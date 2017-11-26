@@ -94,34 +94,4 @@ button {
 button:active {
   background-color: darkgray;
 }
-
-/*MAIN-SECTION CSS*/
-
-.input-api {
-  width: 505px;
-}
-
-.input-api-error::placeholder {
-  color: red;
-  opacity: 1;
-}
-
-.api-key-content {
-  position: relative;
-  text-align: center;
-  color: white;
-  background-color: black;
-  height: 40px;
-}
-
-.api-key-form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.api-key-button {
-  border: 1px solid white;
-}
 </style>

@@ -4,13 +4,16 @@ import * as firebase from 'firebase'
 
 Vue.use(Vuex)
 
+let apikeyListener = {function: null, reference: null}
+
 export const store = new Vuex.Store({
   state: {
     status: false,
     apikey: {
       value: null,
       error: false,
-      edit: false
+      edit: false,
+      listener: null
     }
   },
   mutations: {
@@ -32,11 +35,11 @@ export const store = new Vuex.Store({
       error,
       edit
     }) {
-      if (value != undefined)
+      if (value !== undefined)
         state.apikey.value = value
-      if (error != undefined && error != null)
+      if (error !== undefined && error !== null)
         state.apikey.error = error
-      if (edit != undefined && edit != null)
+      if (edit !== undefined && edit !== null)
         state.apikey.edit = edit
     }
   },
@@ -47,21 +50,53 @@ export const store = new Vuex.Store({
       if (payload.status === false)
       {
         commit('reset')
-        console.log('reset')
       }
       else
         commit('setStatus', payload)
     },
-    changeApikey({
-      commit
-    }, {
-      value,
-      error
-    }) {
-      commit('setApikey', {
-        value,
-        error
-      })
+    listenApikey({ commit }, { listen }) {
+      if (listen) {
+        let userid = firebase.auth().currentUser.uid;
+        let path = "/users/" + userid + "/apikey";
+        apikeyListener.reference = firebase.database().ref(path)
+        apikeyListener.function = apikeyListener.reference.on('value', (snapshot) => {
+          commit('setApikey', { value: snapshot.val(), error: false, edit: false })
+        })
+      } else {
+        if (apikeyListener.reference == null) return
+        apikeyListener.reference.off('value', apikeyListener.function)
+        apikeyListener.function = null
+        apikeyListener.reference = null
+      }
+    },
+    submitApikey({ commit }, { value }) {
+      let path =
+      "https://api.guildwars2.com/v2/tokeninfo?access_token=" + value
+    $.ajax({
+      url: path,
+      success: () => {
+        let userid = firebase.auth().currentUser.uid;
+        let path = "/users/" + userid + "/apikey";
+        firebase.database().ref(path).set(value);
+        commit('setApikey', { value, error: false, edit: false })
+      },
+      error: () => {
+        commit('setApikey', { error: true, edit: true })
+      }
+    })
+    },
+    deleteApikey({ commit }) {
+      let userid = firebase.auth().currentUser.uid;
+      let path = "/users/" + userid + "/apikey";
+      firebase.database().ref(path).remove();
+      commit('setApikey', { value: null, error: false, edit: false })
+      console.log('delete key')
+    },
+    editApikey({ commit }, { edit }) {
+      commit('setApikey', { edit })
+    },
+    errorApikey({ commit }, { error }) {
+      commit('setApikey', { error })
     }
   },
   getters: {
