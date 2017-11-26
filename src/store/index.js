@@ -50,23 +50,18 @@ export const store = new Vuex.Store({
       if (payload.status === false)
       {
         commit('reset')
-      }
-      else
-        commit('setStatus', payload)
-    },
-    listenApikey({ commit }, { listen }) {
-      if (listen) {
-        let userid = firebase.auth().currentUser.uid;
-        let path = "/users/" + userid + "/apikey";
-        apikeyListener.reference = firebase.database().ref(path)
-        apikeyListener.function = apikeyListener.reference.on('value', (snapshot) => {
-          commit('setApikey', { value: snapshot.val(), error: false, edit: false })
-        })
-      } else {
         if (apikeyListener.reference == null) return
         apikeyListener.reference.off('value', apikeyListener.function)
         apikeyListener.function = null
         apikeyListener.reference = null
+      } else {
+        commit('setStatus', payload)
+        let userid = firebase.auth().currentUser.uid
+        let path = "/users/" + userid + "/apikey"
+        apikeyListener.reference = firebase.database().ref(path)
+        apikeyListener.function = apikeyListener.reference.on('value', (snapshot) => {
+          commit('setApikey', { value: snapshot.val(), error: false, edit: false })
+        })
       }
     },
     submitApikey({ commit }, { value }) {
@@ -75,9 +70,9 @@ export const store = new Vuex.Store({
     $.ajax({
       url: path,
       success: () => {
-        let userid = firebase.auth().currentUser.uid;
-        let path = "/users/" + userid + "/apikey";
-        firebase.database().ref(path).set(value);
+        let userid = firebase.auth().currentUser.uid
+        let path = "/users/" + userid + "/apikey"
+        firebase.database().ref(path).set(value)
         commit('setApikey', { value, error: false, edit: false })
       },
       error: () => {
@@ -86,9 +81,9 @@ export const store = new Vuex.Store({
     })
     },
     deleteApikey({ commit }) {
-      let userid = firebase.auth().currentUser.uid;
-      let path = "/users/" + userid + "/apikey";
-      firebase.database().ref(path).remove();
+      let userid = firebase.auth().currentUser.uid
+      let path = "/users/" + userid + "/apikey"
+      firebase.database().ref(path).remove()
       commit('setApikey', { value: null, error: false, edit: false })
       console.log('delete key')
     },

@@ -21,10 +21,8 @@ const vm = new Vue({
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.$store.dispatch('changeStatus', {status: true})
-        this.$store.dispatch('listenApikey', {listen: true})
       } else {
         this.$store.dispatch('changeStatus', {status: false})
-        this.$store.dispatch('listenApikey', {listen: false})
       }
     })
   }
