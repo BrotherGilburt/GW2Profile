@@ -120,10 +120,11 @@ export default {
 }
 
 .api-key-content {
+  margin: 5px auto;
   position: relative;
   text-align: center;
   color: white;
-  background-color: black;
+  background-color: #0b0b0f;
   height: 40px;
 }
 

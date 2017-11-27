@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
+import userProfile from './modules/userProfile.js'
 
 Vue.use(Vuex)
 
@@ -44,9 +45,7 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    changeStatus({
-      commit
-    }, payload) {
+    changeStatus({ commit }, payload) {
       if (payload.status === false)
       {
         commit('reset')
@@ -71,7 +70,7 @@ export const store = new Vuex.Store({
       url: path,
       success: () => {
         let userid = firebase.auth().currentUser.uid
-        let path = "/users/" + userid + "/apikey"
+        let path = '/users/' + userid + '/apikey'
         firebase.database().ref(path).set(value)
         commit('setApikey', { value, error: false, edit: false })
       },
@@ -82,7 +81,7 @@ export const store = new Vuex.Store({
     },
     deleteApikey({ commit }) {
       let userid = firebase.auth().currentUser.uid
-      let path = "/users/" + userid + "/apikey"
+      let path = '/users/' + userid + '/apikey'
       firebase.database().ref(path).remove()
       commit('setApikey', { value: null, error: false, edit: false })
       console.log('delete key')
@@ -101,5 +100,8 @@ export const store = new Vuex.Store({
     apikey(state) {
       return state.apikey
     },
+  },
+  modules: {
+    userProfile
   }
 })
