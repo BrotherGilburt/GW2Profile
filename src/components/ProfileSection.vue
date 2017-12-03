@@ -1,25 +1,31 @@
 <template>
-  <div class="section">
-    <h1 class="header">
-      <slot name="header"/>
-    </h1>
-  
-    <slot></slot>
+  <div class="profile_section">
+    <h1 class="profile_section_header">{{headline}}</h1>
+    <div class="profile_section_body">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    headline: String
+  }
 }
 </script>
 
 <style scoped>
-.section {
+.profile_section {
   text-align: left;
 }
 
-.header {
+.profile_section_body {
+  padding: 10px;
+  background: rgba(11, 11, 15, 1);
+}
+
+.profile_section_header {
   font-size: 26px;
   display: inline-block;
   background: rgb(53, 86, 137);

@@ -1,15 +1,16 @@
 <template>
     <div class="main-section center-section">
-        <h1 class="header">
-            <slot name="header"/>
-        </h1>
-
+        <h1 class="header">{{headline}}</h1>
         <slot></slot>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    headline: String
+  }
+};
 </script>
 
 <style scoped>

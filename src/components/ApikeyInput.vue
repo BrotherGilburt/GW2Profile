@@ -1,4 +1,5 @@
 <template>
+  <profile-section headline="API Key:">
     <div class="api-key-content">
         <form class="api-key-form" v-on:submit.prevent="submitAPIKey">
             <table>
@@ -7,7 +8,6 @@
                     <td><button class="api-key-button" type="button" v-on:click="editStart">add a key</button></td>
                 </tr>
                 <tr v-if="valid == false && edit == true">
-                    <td><label>API Key:</label></td>
                     <td>
                         <input v-bind:class="apiInputClass"
                             v-model="apikeyInput" type="text" max="72"
@@ -20,12 +20,10 @@
                     <td><button class="api-key-button" type="button" v-on:click="editFinish">cancel</button></td>
                 </tr>
                 <tr v-if="valid == true && edit == false">
-                    <td><label>API Key:</label></td>
                     <td>{{apiKeyPreview}}</td>
                     <td><button class="api-key-button" type="button" v-on:click="editStart">edit</button></td>
                 </tr>
                 <tr v-if="valid == true && edit == true">
-                    <td><label>API Key:</label></td>
                     <td>{{apiKeyPreview}}</td>
                     <td>
                         <button class="api-key-button" v-on:click="deleteAPIKey" type="button">delete</button>
@@ -35,9 +33,11 @@
             </table>
         </form>
     </div>
+  </profile-section>
 </template>
 
 <script>
+import ProfileSection from './ProfileSection.vue'
 import * as firebase from "firebase";
 
 export default {
@@ -47,9 +47,13 @@ export default {
       apiInputHolder: "Enter a valid Guild Wars 2 API Key"
     };
   },
+  components: {
+    ProfileSection
+  },
   methods: {
     deleteAPIKey() {
       this.$store.dispatch('deleteApikey')
+      this.$store.dispatch('deleteUserInfo')
     },
     submitAPIKey() {
       this.$store.dispatch("submitApikey", {
@@ -120,7 +124,6 @@ export default {
 }
 
 .api-key-content {
-  margin: 5px auto;
   position: relative;
   text-align: center;
   color: white;

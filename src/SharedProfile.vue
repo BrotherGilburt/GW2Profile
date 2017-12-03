@@ -1,6 +1,6 @@
 <template>
-  <main-section headline="About">
-  
+  <main-section headline="Shared Profile">
+    <span>{{uid}}</span>
   </main-section>
 </template>
 
@@ -8,11 +8,13 @@
 import MainSection from './components/MainSection.vue'
 
 export default {
-  data() {
-      return {}
-  },
   components: {
-      MainSection
+    MainSection
+  },
+  computed: {
+      uid() {
+          return this.$route.params.uid
+      }
   }
 }
 </script>

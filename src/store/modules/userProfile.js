@@ -53,12 +53,11 @@ const actions = {
             console.log('setAccount() - GET Failed: ' + error)
         })
     },
-    deleteAccountInfo({ commit }) {
+    deleteUserInfo({ commit }) {
         let userid = firebase.auth().currentUser.uid
         let path = '/users/' + userid + '/account'
         firebase.database().ref(path).remove()
         commit('setAccount', {name: null, age: null, ap: null, fractal: null, wvw: null})
-        console.log('delete account info - key removed')
     }
 }
 

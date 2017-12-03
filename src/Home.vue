@@ -1,7 +1,7 @@
 <template>
-    <main-section>
-        <span slot="header">Home</span>
-    </main-section>
+  <main-section headline="Home">
+    
+  </main-section>
 </template>
 
 <script>

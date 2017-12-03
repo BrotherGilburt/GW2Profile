@@ -1,19 +1,16 @@
 <template>
-    <main-section>
-        <span slot="header">Profile</span>
-        <apikey-input v-if="status"></apikey-input>
-        <profile-section v-if="status">
-            <span slot="header">Account Info:</span>
-            <account-info-input></account-info-input>
-        </profile-section>
-    </main-section>
+  <main-section headline="Profile">
+    <apikey-input v-if="status"></apikey-input>
+    <account-info-input v-if="status"></account-info-input>
+    <shareable-link v-if="status"></shareable-link>
+  </main-section>
 </template>
 
 <script>
 import MainSection from './components/MainSection.vue'
 import ApikeyInput from './components/ApikeyInput.vue'
 import AccountInfoInput from './components/AccountInfoInput.vue'
-import ProfileSection from './components/ProfileSection.vue'
+import ShareableLink from './components/ShareableLink.vue'
 
 export default {
   data() {
@@ -22,8 +19,8 @@ export default {
   components: {
       MainSection,
       ApikeyInput,
-      ProfileSection,
-      AccountInfoInput
+      AccountInfoInput,
+      ShareableLink
   },
   computed: {
       status() {
@@ -32,7 +29,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -1,41 +1,21 @@
 <template>
-  <div class="section">
-      <table>
-          <tr>
-              <td class="label">Name:</td>
-              <td>{{name}}</td>
-          </tr>
-          <tr>
-              <td class="label">Age:</td>
-              <td>{{age}}</td>
-          </tr>
-          <tr>
-              <td class="label">Achievement Points:</td>
-              <td>{{ap}}</td>
-          </tr>
-          <tr>
-              <td class="label">Fractal Level:</td>
-              <td>{{fractal}}</td>
-          </tr>
-          <tr>
-              <td class="label">Wvw Rank:</td>
-              <td>{{wvw}}</td>
-          </tr>
-      </table>
-  </div>
+    <account-info-section :name="name" :age="age" :ap="ap" :fractal="fractal" :wvw="wvw"></account-info-section>
 </template>
 
 <script>
+import AccountInfoSection from './AccountInfoSection.vue'
+
 export default {
   data() {
       return {}
+  },
+  components: {
+      AccountInfoSection
   },
   methods: {
       loadContent() {
         if (this.isKey == true) {
             this.$store.dispatch('loadAccountInfo')
-        } else if (this.isKey == false && this.$store.getters.status == true) {
-            this.$store.dispatch('deleteAccountInfo')
         }
       }
   },
@@ -74,16 +54,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.section {
-  padding: 10px;
-  background: rgba(11, 11, 15, 1);
-}
-
-.label {
-  padding-right: 5px;
-  text-align: right;
-  font-weight: bold;
-}
-</style>
