@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import MainSection from './components/MainSection.vue'
+import MainSection from '../components/MainSection.vue'
 import ApikeyInput from './components/ApikeyInput.vue'
 import AccountInfoInput from './components/AccountInfoInput.vue'
 import ShareableLink from './components/ShareableLink.vue'

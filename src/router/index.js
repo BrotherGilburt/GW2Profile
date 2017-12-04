@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../Home.vue'
-import Profile from '../Profile.vue'
-import About from '../About.vue'
-import SharedProfile from '../SharedProfile.vue'
+import Home from '../pages/Home'
+import Profile from '../pages/Profile'
+import About from '../pages/About'
+import SharedProfile from '../pages/SharedProfile'
 
 Vue.use(VueRouter)
 

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AccountInfoSection from './AccountInfoSection.vue'
+import AccountInfoSection from '../../components/AccountInfoSection.vue'
 
 export default {
   data() {
@@ -20,7 +20,7 @@ export default {
       }
   },
   mounted() {
-      
+      this.loadContent()
   },
   watch: {
       isKey: function() {

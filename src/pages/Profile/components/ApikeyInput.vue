@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import ProfileSection from './ProfileSection.vue'
+import ProfileSection from '../../components/ProfileSection.vue'
 import * as firebase from "firebase";
 
 export default {

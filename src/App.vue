@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import BannerSection from "./components/BannerSection.vue";
-import NavigationSection from "./components/NavigationSection.vue";
+import BannerSection from "./pages/components/BannerSection.vue";
+import NavigationSection from "./pages/components/NavigationSection.vue";
 
 export default {
   name: "app",

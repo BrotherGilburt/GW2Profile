@@ -147,7 +147,7 @@ export default {
 <style scoped>
 .banner {
   color: white;
-  background-image: url("../assets/guild_wars_2_background.jpg");
+  background-image: url("../../assets/guild_wars_2_background.jpg");
   background-attachment: fixed;
   background-position: 50% 75%;
   background-repeat: repeat;
