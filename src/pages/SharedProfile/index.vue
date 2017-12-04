@@ -1,6 +1,5 @@
 <template>
   <main-section headline="Shared Profile">
-    <span>{{uid}}</span>
     <shared-account-info v-if="valid"></shared-account-info>
     <div v-if="!valid">
       <h1>:(</h1>
@@ -19,14 +18,17 @@ export default {
     MainSection,
     SharedAccountInfo
   },
+  mounted() {
+    this.$store.dispatch('loadSharedProfile', {value: this.uid})
+  },
   watch: {
     uid() {
-      //update store
+      this.$store.dispatch('loadSharedProfile', {value: this.uid})
     }
   },
   computed: {
     valid() {
-      return true
+      return this.$store.getters.sharedUidValid
     },
     uid() {
       return this.$route.params.uid

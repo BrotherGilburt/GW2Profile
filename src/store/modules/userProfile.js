@@ -46,7 +46,7 @@ const actions = {
             commit('setAccount', account)
 
             let userid = firebase.auth().currentUser.uid
-            let path = '/users/' + userid + '/account'
+            let path = '/users/' + userid + '/profile/account'
 
             firebase.database().ref(path).set(account)
         }).catch( (error) => {
@@ -64,6 +64,14 @@ const actions = {
 const getters = {
     account(state) {
         return state.account
+    },
+    shareableLink(state, getters, rootState) {
+        if (rootState.status === false) return null
+        return rootState.domain +'shared/' + firebase.auth().currentUser.uid
+    },
+    shareableRouterLink(state, getters, rootState) {
+        if (rootState.status === false) return null
+        return '/shared/' + firebase.auth().currentUser.uid
     }
 }
 

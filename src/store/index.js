@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
 import userProfile from './modules/userProfile.js'
+import sharedProfile from './modules/sharedProfile.js'
 
 Vue.use(Vuex)
 
@@ -107,13 +108,10 @@ export const store = new Vuex.Store({
     userid(state) {
       if (state.status === false) return null
       return firebase.auth().currentUser.uid
-    },
-    shareableLink(state) {
-      if (state.status === false) return null
-      return state.domain +'shared/' + firebase.auth().currentUser.uid
     }
   },
   modules: {
-    userProfile
+    userProfile,
+    sharedProfile
   }
 })

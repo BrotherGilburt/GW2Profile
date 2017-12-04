@@ -1,6 +1,6 @@
 <template>
   <profile-section headline="Shareable Link:">
-    <span>{{url}}</span>
+    <router-link :to="routerUrl">{{url}}</router-link>
   </profile-section>
 </template>
 
@@ -13,13 +13,14 @@ export default {
   },
   computed: {
       url() {
-
         let link = this.$store.getters.shareableLink
         if (link == null) return 'N/A'
         return link
-        /*let uid = this.$store.getters.userid
-        if (uid == null) return "N/A"
-        return this.$store.getters.domain + uid*/
+      },
+      routerUrl() {
+        let link = this.$store.getters.shareableRouterLink
+        if (link == null) return '/profile'
+        return link
       }
   }
 }

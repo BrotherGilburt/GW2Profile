@@ -33,7 +33,9 @@ export default {
           return apikey != null && apikey != undefined
       },
       name() {
-          return this.$store.getters.account.name
+          let name = this.$store.getters.account.name
+          if (name === null) return 'N/A'
+          return name
       },
       age() {
           let age = this.$store.getters.account.age
@@ -43,13 +45,19 @@ export default {
             return null
       },
       ap() {
-          return this.$store.getters.account.ap
+          let ap = this.$store.getters.account.ap.toString()
+          if (ap === null) return 'N/A'
+          return ap
       },
       fractal() {
-          return this.$store.getters.account.fractal
+          let fractal = this.$store.getters.account.fractal.toString()
+          if (fractal === null) return 'N/A'
+          return fractal
       },
       wvw() {
-          return this.$store.getters.account.wvw
+          let wvw = this.$store.getters.account.wvw.toString()
+          if (wvw === null) return 'N/A'
+          return wvw
       }
   }
 }
