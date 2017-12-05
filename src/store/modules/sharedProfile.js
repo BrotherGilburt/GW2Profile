@@ -35,7 +35,6 @@ const mutations = {
 const actions = {
     loadSharedProfile({ commit }, {value}) {
         let path = '/users/' + value + '/profile'
-        console.log(path)
         firebase.database().ref(path).once('value').then(snapshot => {
             commit('setSharedUid', {value, valid: true})
             commit('setSharedAccount', snapshot.val().account)
