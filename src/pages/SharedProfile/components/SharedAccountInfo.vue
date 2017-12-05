@@ -23,19 +23,19 @@ export default {
             return 'N/A'
       },
       ap() {
-          let ap = this.$store.getters.sharedAccount.ap.toString()
+          let ap = this.$store.getters.sharedAccount.ap
           if (ap === null) return 'N/A'
-          return ap
+          return ap.toString()
       },
       fractal() {
-          let fractal = this.$store.getters.sharedAccount.fractal.toString()
+          let fractal = this.$store.getters.sharedAccount.fractal
           if (fractal === null) return 'N/A'
-          return fractal
+          return fractal.toString()
       },
       wvw() {
-          let wvw = this.$store.getters.sharedAccount.wvw.toString()
+          let wvw = this.$store.getters.sharedAccount.wvw
           if (wvw === null) return 'N/A'
-          return wvw
+          return wvw.toString()
       }
   }
 }

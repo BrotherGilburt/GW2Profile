@@ -34,8 +34,10 @@ export default {
       },
       name() {
           let name = this.$store.getters.account.name
-          if (name === null) return 'N/A'
-          return name
+          if (name == null)
+            return 'N/A'
+          else
+            return name
       },
       age() {
           let age = this.$store.getters.account.age
@@ -45,19 +47,25 @@ export default {
             return null
       },
       ap() {
-          let ap = this.$store.getters.account.ap.toString()
-          if (ap === null) return 'N/A'
-          return ap
+          let ap = this.$store.getters.account.ap
+          if (ap == null)
+            return 'N/A'
+          else
+            return ap
       },
       fractal() {
-          let fractal = this.$store.getters.account.fractal.toString()
-          if (fractal === null) return 'N/A'
-          return fractal
+          let fractal = this.$store.getters.account.fractal
+          if (fractal == null)
+            return 'N/A'
+          else
+            return fractal.toString()
       },
       wvw() {
-          let wvw = this.$store.getters.account.wvw.toString()
-          if (wvw === null) return 'N/A'
-          return wvw
+          let wvw = this.$store.getters.account.wvw
+          if (wvw == null)
+            return 'N/A'
+          else
+            return wvw.toString()
       }
   }
 }

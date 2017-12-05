@@ -147,7 +147,7 @@ export default {
 <style scoped>
 .banner {
   color: white;
-  background-image: url("../../assets/guild_wars_2_background.jpg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/testproject-c8451.appspot.com/o/guild_wars_2_background.jpg?alt=media&token=5bdc7f3f-7948-4026-97db-8c7649da5508");
   background-attachment: fixed;
   background-position: 50% 75%;
   background-repeat: repeat;

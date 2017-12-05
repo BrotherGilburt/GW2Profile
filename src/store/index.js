@@ -16,8 +16,7 @@ export const store = new Vuex.Store({
       error: false,
       edit: false,
       listener: null
-    },
-    domain: 'http://localhost:8080/'
+    }
   },
   mutations: {
     reset(state) {
@@ -101,9 +100,6 @@ export const store = new Vuex.Store({
     },
     apikey(state) {
       return state.apikey
-    },
-    domain(state) {
-      return state.domain
     },
     userid(state) {
       if (state.status === false) return null

@@ -1,0 +1,26 @@
+{
+  "database": {
+    "rules": "./firebase_config/database.rules.json"
+  },
+  "hosting": {
+    "public": "./dist",
+    "rewrites": [
+      {
+        "source": "**/build.js",
+        "destination": "/build.js"
+      },
+      {
+        "source": "**/*.js",
+        "destination": "/build.js.map"
+      },
+      {
+        "source": "**/*.js.map",
+        "destination": "/build.js.map"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

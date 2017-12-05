@@ -67,7 +67,7 @@ const getters = {
     },
     shareableLink(state, getters, rootState) {
         if (rootState.status === false) return null
-        return rootState.domain +'shared/' + firebase.auth().currentUser.uid
+        return 'https://testproject-c8451.firebaseapp.com/shared/' + firebase.auth().currentUser.uid
     },
     shareableRouterLink(state, getters, rootState) {
         if (rootState.status === false) return null

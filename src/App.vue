@@ -39,7 +39,7 @@ body {
 }
 
 body {
-  background: url("./assets/guild_wars_2_texture.jpg");
+  background: url("https://firebasestorage.googleapis.com/v0/b/testproject-c8451.appspot.com/o/guild_wars_2_texture.jpg?alt=media&token=0a920063-00bc-4e0d-bc7b-26dc20eb1edb");
   background-position: 50% 0%;
   background-attachment: fixed;
   background-repeat: repeat;
