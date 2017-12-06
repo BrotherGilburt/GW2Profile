@@ -5,7 +5,7 @@
             <table>
                 <tr v-if="valid == false && edit == false">
                     <td><span>You must enter a Guild Wars 2 API Key to create your profile</span></td>
-                    <td><button class="api-key-button" type="button" v-on:click="editStart">add a key</button></td>
+                    <td><button class="section_button" type="button" v-on:click="editStart">add a key</button></td>
                 </tr>
                 <tr v-if="valid == false && edit == true">
                     <td>
@@ -15,20 +15,20 @@
                             v-bind:placeholder="apiInputHolder"/>
                     </td>
                     <td>
-                        <button class="api-key-button" type="submit">submit</button>
+                        <button class="section_button" type="submit">submit</button>
                     </td>
-                    <td><button class="api-key-button" type="button" v-on:click="editFinish">cancel</button></td>
+                    <td><button class="section_button" type="button" v-on:click="editFinish">cancel</button></td>
                 </tr>
                 <tr v-if="valid == true && edit == false">
                     <td>{{apiKeyPreview}}</td>
-                    <td><button class="api-key-button" type="button" v-on:click="editStart">edit</button></td>
+                    <td><button class="section_button" type="button" v-on:click="editStart">edit</button></td>
                 </tr>
                 <tr v-if="valid == true && edit == true">
                     <td>{{apiKeyPreview}}</td>
                     <td>
-                        <button class="api-key-button" v-on:click="deleteAPIKey" type="button">delete</button>
+                        <button class="section_button" v-on:click="deleteAPIKey" type="button">delete</button>
                     </td>
-                    <td><button class="api-key-button" type="button" v-on:click="editFinish">cancel</button></td>
+                    <td><button class="section_button" type="button" v-on:click="editFinish">cancel</button></td>
                 </tr>
             </table>
         </form>
@@ -101,7 +101,7 @@ export default {
       }
     },
     apiKeyPreview() {
-      return this.apikey.substring(0, 40) + "...";
+      return this.apikey.substring(0, 45) + "...";
     },
     apiInputClass() {
       return {
@@ -125,20 +125,6 @@ export default {
 
 .api-key-content {
   position: relative;
-  text-align: center;
-  color: white;
-  background-color: #0b0b0f;
-  height: 40px;
-}
-
-.api-key-form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.api-key-button {
-  border: 1px solid white;
+  text-align: left;
 }
 </style>

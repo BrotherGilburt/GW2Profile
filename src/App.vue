@@ -59,6 +59,49 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
+b {
+  font-weight: 600;
+}
+
+.section_content_link {
+  text-decoration: underline !important;
+}
+
+.section_content {
+  text-align: left;
+  padding: 0 10px;
+}
+
+.section_content_headline {
+  margin: 25px 0 0 0;
+}
+
+.section_content_text {
+  margin: 0;
+}
+
+.section_image_right {
+  float: right;
+  margin-left: 20px;
+  border: 1px solid black;
+}
+
+.section_button {
+  font-weight: 600;
+  font-size: 20px;
+  background: rgb(53, 86, 137);
+  margin: 1px;
+}
+
+.section_button:hover {
+  margin: 0;
+  border: 1px solid white;
+}
+
 .center-section {
   min-width: 600px;
   max-width: 900px;

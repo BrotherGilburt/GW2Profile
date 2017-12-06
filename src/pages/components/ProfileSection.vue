@@ -17,6 +17,7 @@ export default {
 
 <style scoped>
 .profile_section {
+  margin: 10px 0 0 0;
   text-align: left;
 }
 
@@ -29,7 +30,7 @@ export default {
   font-size: 26px;
   display: inline-block;
   background: rgb(53, 86, 137);
-  margin: 10px 0 0 0;
+  margin: 0;
   padding: 5px 10px;
  }
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div class="nav_panel">
-      <router-link to="/">Home</router-link>
+      <router-link class="router_link" to="/">Home</router-link>
       <span> | </span>
-      <router-link to="/profile">Profile</router-link>
+      <router-link class="router_link" to="/profile">Profile</router-link>
       <span> | </span>
-      <router-link to="/about">About</router-link>
+      <router-link class="router_link" to="/about">About</router-link>
   </div>
 </template>
 

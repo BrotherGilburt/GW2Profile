@@ -1,6 +1,6 @@
 <template>
     <div class="main-section center-section">
-        <h1 class="header">{{headline}}</h1>
+        <h1 class="page_header">{{headline}}</h1>
         <slot></slot>
   </div>
 </template>
@@ -24,9 +24,9 @@ export default {
   text-align: center;
 }
 
-.header {
+.page_header {
   background: rgba(11,11,15,1);
-  margin: auto;
+  margin: 0 auto 25px auto;
   width: 100%;
 }
 </style>
