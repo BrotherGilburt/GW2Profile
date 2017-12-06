@@ -17,7 +17,6 @@ export default {
 .main-section {
   color: white;
   background: rgba(28,28,38,0.9);
-  opacity: .9;
   margin: auto;
   padding: 15px;
   min-height: 750px;
@@ -25,7 +24,7 @@ export default {
 }
 
 .page_header {
-  background: rgba(11,11,15,1);
+  background: rgba(11,11,15);
   margin: 0 auto 25px auto;
   width: 100%;
 }

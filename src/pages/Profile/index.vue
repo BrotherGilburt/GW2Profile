@@ -3,6 +3,9 @@
     <apikey-input v-if="status"></apikey-input>
     <account-info-input v-if="status"></account-info-input>
     <shareable-link v-if="status"></shareable-link>
+    <div v-if="!status">
+      <h2>Login to view your profile</h2>
+    </div>
   </main-section>
 </template>
 

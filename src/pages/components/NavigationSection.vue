@@ -1,10 +1,12 @@
 <template>
   <div class="nav_panel">
+    <div class="center-section">
       <router-link class="router_link" to="/">Home</router-link>
       <span> | </span>
       <router-link class="router_link" to="/profile">Profile</router-link>
       <span> | </span>
       <router-link class="router_link" to="/about">About</router-link>
+    </div>
   </div>
 </template>
 

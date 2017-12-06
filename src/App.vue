@@ -39,10 +39,10 @@ body {
 }
 
 body {
-  background: url("https://firebasestorage.googleapis.com/v0/b/testproject-c8451.appspot.com/o/guild_wars_2_texture.jpg?alt=media&token=0a920063-00bc-4e0d-bc7b-26dc20eb1edb");
-  background-position: 50% 0%;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/testproject-c8451.appspot.com/o/guild_wars_2_background.jpg?alt=media&token=5bdc7f3f-7948-4026-97db-8c7649da5508");
   background-attachment: fixed;
-  background-repeat: repeat;
+  background-position: 50%;
+  background-size: auto 150%;
   background-color: #29293a;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   font-size: 20px;
@@ -86,16 +86,26 @@ b {
 }
 
 .section_image_right {
+  background: black;
   float: right;
   margin: 20px 0 20px 20px;
   border: 1px solid black;
 }
 
-.section_button {
+.blue_button {
+  border: none;
+  font-size: 16px;
+  color: inherit;
+  padding: 3px 8px 3px 8px;
   font-weight: 600;
   font-size: 20px;
   background: rgb(53, 86, 137);
   margin: 1px;
+}
+
+.blue_button:hover {
+  margin: 0;
+  border: 1px solid white;
 }
 
 .section_button:hover {
@@ -104,8 +114,7 @@ b {
 }
 
 .center-section {
-  min-width: 600px;
-  max-width: 900px;
+  width: 900px;
   margin: auto;
 }
 
@@ -125,17 +134,5 @@ table {
 .loginTextError::placeholder {
   color: red;
   opacity: 1;
-}
-
-button {
-  font-size: 16px;
-  color: inherit;
-  background-color: #0b0b0f;
-  border: none;
-  padding: 3px 8px 3px 8px;
-}
-
-button:active {
-  background-color: darkgray;
 }
 </style>

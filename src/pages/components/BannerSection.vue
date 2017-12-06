@@ -21,10 +21,10 @@
                        type="password" v-bind:placeholder="passHolder"/>
               </td>
               <td>
-                <button type="submit">sign in</button>
+                <button class="blue_button" type="submit">sign in</button>
               </td>
               <td>
-                <button type="button" v-on:click="signUp">sign up</button>
+                <button class="blue_button" type="button" v-on:click="signUp">sign up</button>
               </td>
             </tr>
           </table>
@@ -32,7 +32,7 @@
       </div>
       <div class="bannerRight" v-if="status">
         <span class="loginMessage">{{displayEmail}} </span>
-        <button type="button" v-on:click="signOut">sign out</button>
+        <button class="blue_button" type="button" v-on:click="signOut">sign out</button>
       </div>
     </div>
   </div>
@@ -147,11 +147,7 @@ export default {
 <style scoped>
 .banner {
   color: white;
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/testproject-c8451.appspot.com/o/guild_wars_2_background.jpg?alt=media&token=5bdc7f3f-7948-4026-97db-8c7649da5508");
-  background-attachment: fixed;
-  background-position: 50% 75%;
-  background-repeat: repeat;
-  background-color: #273746;
+  background: rgba(28,28,38,0.75);
   height: 150px;
   min-width: 600px;
 }
@@ -171,7 +167,8 @@ export default {
 }
 
 .bannerRight {
-  margin-bottom: 5px;
+  padding: 10px;
+  background: #0b0b0f;
   align-self: flex-end;
   float: right !important;
 }
@@ -182,6 +179,6 @@ export default {
 }
 
 .loginMessage {
-  color: #0b0b0f;
+  color: white;
 }
 </style>

@@ -5,7 +5,7 @@
       <p class="section_content_text">
         GW2 Profile was created by Perry as a project for IT354 at Illinois
         State University. This site uses
-        <a class="section_content_link" href="https://www.vuejs.com/">Vue.js</a>
+        <a class="section_content_link" href="https://vuejs.org/">Vue.js</a>
         for the front-end and
         <a class="section_content_link" href="https://firebase.google.com/">Firebase</a>
         for the backend.

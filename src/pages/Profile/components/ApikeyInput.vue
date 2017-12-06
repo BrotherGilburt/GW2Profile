@@ -5,7 +5,7 @@
             <table>
                 <tr v-if="valid == false && edit == false">
                     <td><span>You must enter a Guild Wars 2 API Key to create your profile</span></td>
-                    <td><button class="section_button" type="button" v-on:click="editStart">add a key</button></td>
+                    <td><button class="blue_button" type="button" v-on:click="editStart">add a key</button></td>
                 </tr>
                 <tr v-if="valid == false && edit == true">
                     <td>
@@ -15,20 +15,20 @@
                             v-bind:placeholder="apiInputHolder"/>
                     </td>
                     <td>
-                        <button class="section_button" type="submit">submit</button>
+                        <button class="blue_button" type="submit">submit</button>
                     </td>
-                    <td><button class="section_button" type="button" v-on:click="editFinish">cancel</button></td>
+                    <td><button class="blue_button" type="button" v-on:click="editFinish">cancel</button></td>
                 </tr>
                 <tr v-if="valid == true && edit == false">
                     <td>{{apiKeyPreview}}</td>
-                    <td><button class="section_button" type="button" v-on:click="editStart">edit</button></td>
+                    <td><button class="blue_button" type="button" v-on:click="editStart">edit</button></td>
                 </tr>
                 <tr v-if="valid == true && edit == true">
                     <td>{{apiKeyPreview}}</td>
                     <td>
-                        <button class="section_button" v-on:click="deleteAPIKey" type="button">delete</button>
+                        <button class="blue_button" v-on:click="deleteAPIKey" type="button">delete</button>
                     </td>
-                    <td><button class="section_button" type="button" v-on:click="editFinish">cancel</button></td>
+                    <td><button class="blue_button" type="button" v-on:click="editFinish">cancel</button></td>
                 </tr>
             </table>
         </form>
