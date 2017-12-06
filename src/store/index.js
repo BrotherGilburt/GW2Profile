@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
+import axios from 'axios'
 import userProfile from './modules/userProfile.js'
 import sharedProfile from './modules/sharedProfile.js'
 
@@ -67,25 +68,21 @@ export const store = new Vuex.Store({
     submitApikey({ commit }, { value }) {
       let path =
       "https://api.guildwars2.com/v2/tokeninfo?access_token=" + value
-    $.ajax({
-      url: path,
-      success: () => {
+      
+      axios.get(path).then( (response) => {
         let userid = firebase.auth().currentUser.uid
         let path = '/users/' + userid + '/apikey'
         firebase.database().ref(path).set(value)
         commit('setApikey', { value, error: false, edit: false })
-      },
-      error: () => {
+      }).catch( (error) => {
         commit('setApikey', { error: true, edit: true })
-      }
-    })
+      })
     },
     deleteApikey({ commit }) {
       let userid = firebase.auth().currentUser.uid
       let path = '/users/' + userid + '/apikey'
       firebase.database().ref(path).remove()
       commit('setApikey', { value: null, error: false, edit: false })
-      console.log('delete key')
     },
     editApikey({ commit }, { edit }) {
       commit('setApikey', { edit })

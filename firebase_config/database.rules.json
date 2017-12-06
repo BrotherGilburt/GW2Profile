@@ -1,23 +1,27 @@
 {
 	"rules": {
-  	"users": {
-    	"$uid": {
-      	"apikey": {
-        	".read": "$uid === auth.uid",
-        	".write": "$uid === auth.uid"
-      	},
-      	"profile": {
-        	".read": true,
-        	".write": "$uid === auth.uid",
-        	"account": {
-          	"name": {},
-          	"age": {},
-          	"ap": {},
-          	"fractal": {},
-          	"wvw": {}
-        	}
-      	}
-    	}
-  	}
+		"users": {
+			"$uid": {
+				".read": "$uid === auth.uid",
+				".write": "$uid === auth.uid",
+				"apikey": {
+					".read": "$uid === auth.uid",
+					".write": "$uid === auth.uid"
+				},
+				"profile": {
+					".read": true,
+					".write": "$uid === auth.uid",
+					"account": {
+						".read": true,
+						".write": "$uid === auth.uid",
+						"name": {},
+						"age": {},
+						"ap": {},
+						"fractal": {},
+						"wvw": {}
+					}
+				}
+			}
+		}
 	}
 }

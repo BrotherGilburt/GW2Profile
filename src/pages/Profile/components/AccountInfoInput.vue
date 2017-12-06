@@ -51,7 +51,7 @@ export default {
           if (ap == null)
             return 'N/A'
           else
-            return ap
+            return ap.toString()
       },
       fractal() {
           let fractal = this.$store.getters.account.fractal

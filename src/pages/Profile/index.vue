@@ -1,8 +1,8 @@
 <template>
   <main-section headline="Profile">
     <apikey-input v-if="status"></apikey-input>
-    <account-info-input v-if="status"></account-info-input>
-    <shareable-link v-if="status"></shareable-link>
+    <account-info-input v-if="status && isKey"></account-info-input>
+    <shareable-link v-if="status && isKey"></shareable-link>
     <div v-if="!status">
       <h2>Login to view your profile</h2>
     </div>
@@ -27,7 +27,10 @@ export default {
   },
   computed: {
       status() {
-          return this.$store.getters.status
+        return this.$store.getters.status
+      },
+      isKey() {
+        return this.$store.getters.apikey.value !== null
       }
   }
 }

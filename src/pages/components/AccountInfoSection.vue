@@ -19,7 +19,7 @@
           <td>{{fractal}}</td>
         </tr>
         <tr>
-          <td class="label">Wvw Rank:</td>
+          <td class="label">WvW Rank:</td>
           <td>{{wvw}}</td>
         </tr>
       </table>
