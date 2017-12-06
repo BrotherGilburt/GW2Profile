@@ -77,16 +77,17 @@ b {
 }
 
 .section_content_headline {
-  margin: 25px 0 0 0;
+  display: inline-block;
+  margin: 0;
 }
 
 .section_content_text {
-  margin: 0;
+  margin: 0 0 10px 0;
 }
 
 .section_image_right {
   float: right;
-  margin-left: 20px;
+  margin: 20px 0 20px 20px;
   border: 1px solid black;
 }
 
