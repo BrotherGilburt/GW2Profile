@@ -12,7 +12,8 @@
       </p>
       <h3 class="section_content_headline">Contact:</h3>
       <p class="section_content_text">
-        <b>Email:</b> pdkaufm(at)ilstu.edu
+        <b>Email:</b> pdk(at)fake.com <br>
+        <b>Phone:</b> 555-555-5555
       </p>
     </div>
   </main-section>
