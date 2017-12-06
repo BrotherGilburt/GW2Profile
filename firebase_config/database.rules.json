@@ -1,6 +1,23 @@
 {
-  "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null"
-  }
+	"rules": {
+  	"users": {
+    	"$uid": {
+      	"apikey": {
+        	".read": "$uid === auth.uid",
+        	".write": "$uid === auth.uid"
+      	},
+      	"profile": {
+        	".read": true,
+        	".write": "$uid === auth.uid",
+        	"account": {
+          	"name": {},
+          	"age": {},
+          	"ap": {},
+          	"fractal": {},
+          	"wvw": {}
+        	}
+      	}
+    	}
+  	}
+	}
 }
