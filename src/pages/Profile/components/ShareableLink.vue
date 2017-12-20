@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ProfileSection from '../../components/ProfileSection.vue'
+import ProfileSection from '@/pages/components/ProfileSection.vue'
 
 export default {
   components: {

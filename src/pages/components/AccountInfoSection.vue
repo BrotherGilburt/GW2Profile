@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import ProfileSection from './ProfileSection.vue'
+import ProfileSection from '@/pages/components/ProfileSection.vue'
 
 export default {
   props: {

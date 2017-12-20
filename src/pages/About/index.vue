@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import MainSection from '../components/MainSection.vue'
+import MainSection from '@/pages/components/MainSection.vue'
 
 export default {
   data() {

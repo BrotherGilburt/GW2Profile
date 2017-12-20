@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AccountInfoSection from '../../components/AccountInfoSection.vue'
+import AccountInfoSection from '@/pages/components/AccountInfoSection.vue'
 
 export default {
   components: {
