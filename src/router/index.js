@@ -28,6 +28,11 @@ export const router = new VueRouter({
             path: '/shared/:uid',
             name: 'sharedprofile',
             component: SharedProfile
+        },
+        {
+            path: '*',
+            name: '404',
+            component: {template: '<h1 style="text-align: center">404</h1>'}
         }
     ],
     mode: 'history'
