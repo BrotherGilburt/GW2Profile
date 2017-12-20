@@ -29,7 +29,7 @@ export default {
   },
   computed: {
       isKey() {
-          let apikey = this.$store.getters.apikey.value
+          let apikey = this.$store.getters.apikeyValue
           return apikey != null && apikey != undefined
       },
       name() {

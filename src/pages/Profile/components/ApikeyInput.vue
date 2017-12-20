@@ -79,14 +79,14 @@ export default {
   },
   computed: {
     apikey() {
-      return this.$store.getters.apikey.value;
+      return this.$store.getters.apikeyValue
     },
     valid() {
       return this.apikey != null && this.apikey != undefined;
     },
     error: {
       get() {
-        return this.$store.getters.apikey.error;
+        return this.$store.getters.apikeyError
       },
       set(error) {
         this.$store.dispatch('errorApikey', { error })
@@ -94,7 +94,7 @@ export default {
     },
     edit: {
       get() {
-        return this.$store.getters.apikey.edit;
+        return this.$store.getters.apikeyEdit;
       },
       set(edit) {
         this.$store.dispatch('editApikey', { edit })

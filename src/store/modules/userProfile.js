@@ -30,8 +30,8 @@ const mutations = {
 }
 
 const actions = {
-    loadAccountInfo({ commit, rootState }) {
-        let apikey = rootState.apikey.value
+    loadAccountInfo({ commit, getters }) {
+        let apikey = getters.apikeyValue
         let path = 'https://api.guildwars2.com/v2/account?access_token=' + apikey
 
         axios.get(path).then( (response) => {

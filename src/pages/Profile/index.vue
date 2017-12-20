@@ -30,7 +30,7 @@ export default {
         return this.$store.getters.status
       },
       isKey() {
-        return this.$store.getters.apikey.value !== null
+        return this.$store.getters.apikeyValue !== null
       }
   }
 }

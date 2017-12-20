@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
 import axios from 'axios'
+import apikey from './modules/apikey.js'
 import userProfile from './modules/userProfile.js'
 import sharedProfile from './modules/sharedProfile.js'
 
@@ -19,32 +20,13 @@ const config = {
 export const store = new Vuex.Store({
   state: {
     status: false,
-    apikey: {
-      value: null,
-      error: false,
-      edit: false,
-      funct: null,
-      ref: null
-    }
   },
   mutations: {
     reset(state) {
       state.status = false
-      state.apikey.value = null
-      state.apikey.error = false
-      state.apikey.edit = false
-      state.apikey.funct = null
-      state.apikey.ref = null
     },
     setStatus(state, status) {
       state.status = status
-    },
-    setApikey(state, { value, error, edit, funct, ref }) {
-      if (value !== undefined) state.apikey.value = value
-      if (error !== undefined) state.apikey.error = error
-      if (edit !== undefined) state.apikey.edit = edit
-      if (funct !== undefined) state.apikey.funct = funct
-      if (ref !== undefined) state.apikey.ref = ref
     }
   },
   actions: {
@@ -70,7 +52,50 @@ export const store = new Vuex.Store({
           commit('reset')
         }
       })
+    }
+  },
+  getters: {
+    status(state) {
+      return state.status
     },
+    userid(state) {
+      if (state.status === false) return null
+      return firebase.auth().currentUser.uid
+    }
+  },
+  modules: {
+    apikey,
+    userProfile,
+    sharedProfile
+  }
+})
+
+/*
+  STATE
+    apikey: {
+      value: null,
+      error: false,
+      edit: false,
+      funct: null,
+      ref: null
+    }
+
+    MUTATIONS
+      state.apikey.value = null
+      state.apikey.error = false
+      state.apikey.edit = false
+      state.apikey.funct = null
+      state.apikey.ref = null
+
+    setApikey(state, { value, error, edit, funct, ref }) {
+      if (value !== undefined) state.apikey.value = value
+      if (error !== undefined) state.apikey.error = error
+      if (edit !== undefined) state.apikey.edit = edit
+      if (funct !== undefined) state.apikey.funct = funct
+      if (ref !== undefined) state.apikey.ref = ref
+    }
+
+    ACTIONS
     submitApikey({ commit }, { value }) {
       let path =
       "https://api.guildwars2.com/v2/tokeninfo?access_token=" + value
@@ -96,21 +121,11 @@ export const store = new Vuex.Store({
     errorApikey({ commit }, { error }) {
       commit('setApikey', { error })
     }
-  },
-  getters: {
-    status(state) {
-      return state.status
-    },
+
     apikey(state) {
       return state.apikey
     },
-    userid(state) {
-      if (state.status === false) return null
-      return firebase.auth().currentUser.uid
-    }
-  },
-  modules: {
-    userProfile,
-    sharedProfile
-  }
-})
+
+
+
+*/
