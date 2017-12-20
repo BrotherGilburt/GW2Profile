@@ -54,10 +54,9 @@ export default {
   },
   methods: {
     signIn() {
-      var promise = firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password);
+      var promise = firebase.auth().signInWithEmailAndPassword(this.email, this.password)
       promise.catch(error => {
+        console.log('error')
         var errorCode = error.code;
         if (errorCode == "auth/invalid-email") {
           this.emailFieldMessage("invalid email");

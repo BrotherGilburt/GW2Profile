@@ -7,7 +7,14 @@ import sharedProfile from './modules/sharedProfile.js'
 
 Vue.use(Vuex)
 
-let apikeyListener = {function: null, reference: null}
+const config = {
+  apiKey: "AIzaSyAHmlXOLaS6vpp5VORKELlBYQURtn8utao",
+  authDomain: "testproject-c8451.firebaseapp.com",
+  databaseURL: "https://testproject-c8451.firebaseio.com",
+  projectId: "testproject-c8451",
+  storageBucket: "testproject-c8451.appspot.com",
+  messagingSenderId: "809672710893"
+}
 
 export const store = new Vuex.Store({
   state: {
@@ -16,54 +23,53 @@ export const store = new Vuex.Store({
       value: null,
       error: false,
       edit: false,
-      listener: null
+      funct: null,
+      ref: null
     }
   },
   mutations: {
     reset(state) {
       state.status = false
-      state.apikey = {
-        value: null,
-        error: false,
-        edit: false
-      }
+      state.apikey.value = null
+      state.apikey.error = false
+      state.apikey.edit = false
+      state.apikey.funct = null
+      state.apikey.ref = null
     },
-    setStatus(state, {
-      status
-    }) {
+    setStatus(state, status) {
       state.status = status
     },
-    setApikey(state, {
-      value,
-      error,
-      edit
-    }) {
-      if (value !== undefined)
-        state.apikey.value = value
-      if (error !== undefined && error !== null)
-        state.apikey.error = error
-      if (edit !== undefined && edit !== null)
-        state.apikey.edit = edit
+    setApikey(state, { value, error, edit, funct, ref }) {
+      if (value !== undefined) state.apikey.value = value
+      if (error !== undefined) state.apikey.error = error
+      if (edit !== undefined) state.apikey.edit = edit
+      if (funct !== undefined) state.apikey.funct = funct
+      if (ref !== undefined) state.apikey.ref = ref
     }
   },
   actions: {
-    changeStatus({ commit }, payload) {
-      if (payload.status === false)
-      {
-        commit('reset')
-        if (apikeyListener.reference == null) return
-        apikeyListener.reference.off('value', apikeyListener.function)
-        apikeyListener.function = null
-        apikeyListener.reference = null
-      } else {
-        commit('setStatus', payload)
-        let userid = firebase.auth().currentUser.uid
-        let path = "/users/" + userid + "/apikey"
-        apikeyListener.reference = firebase.database().ref(path)
-        apikeyListener.function = apikeyListener.reference.on('value', (snapshot) => {
-          commit('setApikey', { value: snapshot.val(), error: false, edit: false })
-        })
-      }
+    init({ commit , state }) {
+      //initalize app
+      if (!firebase.apps.length) firebase.initializeApp(config)
+
+      //set listener for user status
+      firebase.auth().onAuthStateChanged( (user) => {
+        if (user) {
+          commit('setStatus', true)
+          let userid = firebase.auth().currentUser.uid
+          let path = "/users/" + userid + "/apikey"
+          let ref = firebase.database().ref(path)
+          let funct = ref.on('value', (snapshot) => {
+            commit('setApikey', { value: snapshot.val(), error: false, edit: false })
+          })
+          commit('setApikey', {funct, ref})
+        } else {
+          if (state.apikey.ref != null && state.apikey.funct != null) {
+            state.apikey.ref.off('value', state.apikey.funct)
+          }
+          commit('reset')
+        }
+      })
     },
     submitApikey({ commit }, { value }) {
       let path =
