@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
 import axios from 'axios'
+import login from './modules/login.js'
 import apikey from './modules/apikey.js'
 import userProfile from './modules/userProfile.js'
 import sharedProfile from './modules/sharedProfile.js'
@@ -61,9 +62,14 @@ export const store = new Vuex.Store({
     userid(state) {
       if (state.status === false) return null
       return firebase.auth().currentUser.uid
+    },
+    email(state) {
+      if (state.status === false) return null
+      return firebase.auth().currentUser.email
     }
   },
   modules: {
+    login,
     apikey,
     userProfile,
     sharedProfile

@@ -11,14 +11,14 @@
               <td>
                 <input v-bind:class="emailInputClass"
                        v-model="email"
-                       v-on:keyup="checkPlaceholderReset('email')"
-                       type="text" v-bind:placeholder="emailHolder"/>
+                       v-on:keyup="placeholderReset('email')"
+                       type="text" v-bind:placeholder="emailPlaceholder"/>
               </td>
               <td>
-                <input v-bind:class="passInputClass"
+                <input v-bind:class="passwordInputClass"
                        v-model="password"
-                       v-on:keyup="checkPlaceholderReset('pass')"
-                       type="password" v-bind:placeholder="passHolder"/>
+                       v-on:keyup="placeholderReset('password')"
+                       type="password" v-bind:placeholder="passwordPlaceholder"/>
               </td>
               <td>
                 <button class="blue_button" type="submit">sign in</button>
@@ -39,81 +39,45 @@
 </template>
 
 <script>
-import * as firebase from "firebase";
+const EMAIL_PLACEHOLDER = 'Email'
+const PASSWORD_PLACEHOLDER = 'Password'
 
 export default {
   data() {
     return {
       email: '',
-      password: '',
-      emailHolder: 'Email',
-      passHolder: "Password",
-      emailError: false,
-      passError: false
-    };
+      password: ''
+    }
   },
   methods: {
     signIn() {
-      var promise = firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-      promise.catch(error => {
-        console.log('error')
-        var errorCode = error.code;
-        if (errorCode == "auth/invalid-email") {
-          this.emailFieldMessage("invalid email");
-        } else if (errorCode == "auth/user-not-found") {
-          this.emailFieldMessage("user not found", "both");
-        } else if (errorCode == "auth/wrong-password") {
-          this.passFieldMessage("wrong password");
-        } else {
-          console.log(error.message);
-        }
-      });
+      this.$store.dispatch('signIn', {email: this.email, password: this.password})
     },
     signUp() {
-      var promise = firebase.auth().createUserWithEmailAndPassword(
-        this.email,
-        this.password
-      );
-      promise.catch(error => {
-        var errorCode = error.code;
-        if (errorCode == "auth/email-already-in-use") {
-          this.emailFieldMessage("email unavailable");
-        } else if (errorCode == "auth/invalid-email") {
-          this.emailFieldMessage("invalid email");
-        } else if (errorCode == "auth/weak-password") {
-          this.passFieldMessage("too short");
-        } else {
-          console.log(error.message);
-        }
-      });
+      this.$store.dispatch('signUp', {email: this.email, password: this.password})
     },
     signOut() {
-      firebase.auth().signOut();
-      this.email = "";
-      this.password = "";
+      this.$store.dispatch('signOut')
     },
-    checkPlaceholderReset(type) {
-      if (type == "email" && this.email.length > 0) this.placeholderReset();
-      if (type == "pass" && this.password.length > 0) this.placeholderReset();
+    placeholderReset(type) {
+      if (type === 'email' && this.emailPlaceholder !== EMAIL_PLACEHOLDER && this.email.length > 0) {
+        this.$store.dispatch('clearError')
+      }
+      if (type === 'password' && this.passwordPlaceholder !== PASSWORD_PLACEHOLDER && this.password.length > 0) {
+        this.$store.dispatch('clearError')
+      }
+    }
+  },
+  watch: {
+    isError() {
+      if (this.isError === true) {
+        this.email = ''
+        this.password = ''
+      }
     },
-    placeholderReset() {
-      this.emailHolder = "Email";
-      this.passHolder = "Password";
-      this.emailError = false;
-      this.passError = false;
-    },
-    emailFieldMessage(mesg, type) {
-      this.placeholderReset();
-      this.emailError = true;
-      this.email = "";
-      if (type == "both") this.password = "";
-      this.emailHolder = mesg;
-    },
-    passFieldMessage(mesg) {
-      this.placeholderReset();
-      this.passError = true;
-      this.password = "";
-      this.passHolder = mesg;
+    status() {
+      this.email = ''
+      this.password = ''
     }
   },
   computed: {
@@ -121,22 +85,33 @@ export default {
       return this.$store.getters.status
     },
     displayEmail() {
-      if (this.status) {
-        return firebase.auth().currentUser.email;
-      } else {
-        return "";
-      }
+      return this.$store.getters.email
+    },
+    isError() {
+      return this.$store.getters.isLoginError
+    },
+    emailPlaceholder() {
+      let placeholder = this.$store.getters.loginEmailError
+      if (placeholder != null) return placeholder
+      placeholder = this.$store.getters.loginBothError
+      if (placeholder != null) return placeholder
+      return EMAIL_PLACEHOLDER
+    },
+    passwordPlaceholder() {
+      let placeholder = this.$store.getters.loginPasswordError
+      if (placeholder != null) return placeholder
+      return PASSWORD_PLACEHOLDER
     },
     emailInputClass() {
       return {
         loginTextInput: true,
-        loginTextError: this.emailError
+        loginTextError: (this.emailPlaceholder !== EMAIL_PLACEHOLDER)
       };
     },
-    passInputClass() {
+    passwordInputClass() {
       return {
         loginTextInput: true,
-        loginTextError: this.passError
+        loginTextError: (this.passwordPlaceholder !== PASSWORD_PLACEHOLDER)
       };
     }
   }
@@ -178,6 +153,17 @@ export default {
 }
 
 .loginMessage {
+  font-weight: 580;
   color: white;
+}
+
+.loginTextInput {
+  border: 1px solid black;
+  padding: 2px;
+}
+
+.loginTextError::placeholder {
+  color: red;
+  opacity: 1;
 }
 </style>

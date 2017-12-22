@@ -29,21 +29,21 @@ const actions = {
         error = errorTypes[2]
       } else if (errorCode == "auth/wrong-password") {
         message = 'wrong password'
-        type = errorTypes[1]
+        error = errorTypes[1]
       } else {
         message = 'an error occurred'
-        type = errorTypes[2]
+        error = errorTypes[2]
       }
       commit('setLoginError', {message, error})
     })
   },
   signUp({ commit }, { email, password }) {
     firebase.auth().createUserWithEmailAndPassword(email, password).catch( (exception) => {
-      let message, email
+      let message, error
       let errorCode = error.code;
       if (errorCode == "auth/email-already-in-use") {
         message = "email unavailable"
-        type = errorTypes[0]
+        error = errorTypes[0]
       } else if (errorCode == "auth/invalid-email") {
         message = 'invalid email'
         error = errorTypes[0]
@@ -54,10 +54,13 @@ const actions = {
         this.passFieldMessage("too short");
       } else {
         message = 'an error occurred'
-        type = errorTypes[2]
+        error = errorTypes[2]
       }
       commit('setLoginError', {message, error})
     })
+  },
+  signOut() {
+    firebase.auth().signOut()
   },
   clearError({ commit }) {
     commit('setLoginError', {message: null, error: null})

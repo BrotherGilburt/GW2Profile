@@ -121,18 +121,4 @@ b {
 table {
   white-space: nowrap;
 }
-
-.loginMessage {
-  font-weight: 580;
-}
-
-.loginTextInput {
-  border: 1px solid black;
-  padding: 2px;
-}
-
-.loginTextError::placeholder {
-  color: red;
-  opacity: 1;
-}
 </style>
