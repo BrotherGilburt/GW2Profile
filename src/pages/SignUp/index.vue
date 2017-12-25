@@ -1,7 +1,7 @@
 <template>
   <main-section headline="Sign Up">
     <form @submit.prevent="signUp()">
-      <table>
+      <table class="section_content_table">
         <tr>
           <td>
             <feedback-input v-model="email" @change="placeholderReset('email')" :error="isEmailError" :placeholder="emailPlaceholder" />

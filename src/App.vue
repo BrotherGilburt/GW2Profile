@@ -85,6 +85,18 @@ b {
   margin: 0 0 10px 0;
 }
 
+.section_content_table {
+  background-color: rgba(11,11,15);
+  margin: auto;
+  padding: 10px 30px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.section_content_table td {
+  padding: 4px;
+}
+
 .section_image_right {
   background: black;
   float: right;

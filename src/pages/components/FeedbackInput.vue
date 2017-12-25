@@ -37,6 +37,8 @@ export default {
 
 <style>
 .feedback_input {
+  font-size: inherit;
+  width: 100%;
   border: 1px solid black;
   padding: 2px;
 }
