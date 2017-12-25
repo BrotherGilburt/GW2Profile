@@ -9,16 +9,10 @@
           <table>
             <tr>
               <td>
-                <input v-bind:class="emailInputClass"
-                       v-model="email"
-                       v-on:keyup="placeholderReset('email')"
-                       type="text" v-bind:placeholder="emailPlaceholder"/>
+                <feedback-input v-model="email" @reset="placeholderReset('email')" :error="isEmailError" :placeholder="emailPlaceholder" />
               </td>
               <td>
-                <input v-bind:class="passwordInputClass"
-                       v-model="password"
-                       v-on:keyup="placeholderReset('password')"
-                       type="password" v-bind:placeholder="passwordPlaceholder"/>
+                <feedback-input type="password" v-model="password" @reset="placeholderReset('password')" :error="isPasswordError" :placeholder="passwordPlaceholder"/>
               </td>
               <td>
                 <button class="blue_button" type="submit">sign in</button>
@@ -39,10 +33,14 @@
 </template>
 
 <script>
+import FeedbackInput from './FeedbackInput.vue'
 const EMAIL_PLACEHOLDER = 'Email'
 const PASSWORD_PLACEHOLDER = 'Password'
 
 export default {
+  components: {
+    FeedbackInput
+  },
   data() {
     return {
       email: '',
@@ -102,17 +100,11 @@ export default {
       if (placeholder != null) return placeholder
       return PASSWORD_PLACEHOLDER
     },
-    emailInputClass() {
-      return {
-        loginTextInput: true,
-        loginTextError: (this.emailPlaceholder !== EMAIL_PLACEHOLDER)
-      };
+    isEmailError() {
+      return this.emailPlaceholder !== EMAIL_PLACEHOLDER
     },
-    passwordInputClass() {
-      return {
-        loginTextInput: true,
-        loginTextError: (this.passwordPlaceholder !== PASSWORD_PLACEHOLDER)
-      };
+    isPasswordError() {
+      return this.passwordPlaceholder !== PASSWORD_PLACEHOLDER
     }
   }
 };

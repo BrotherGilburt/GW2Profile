@@ -40,18 +40,16 @@ const actions = {
   signUp({ commit }, { email, password }) {
     firebase.auth().createUserWithEmailAndPassword(email, password).catch( (exception) => {
       let message, error
-      let errorCode = error.code;
+      let errorCode = exception.code
       if (errorCode == "auth/email-already-in-use") {
         message = "email unavailable"
         error = errorTypes[0]
       } else if (errorCode == "auth/invalid-email") {
         message = 'invalid email'
         error = errorTypes[0]
-        this.emailFieldMessage("invalid email");
       } else if (errorCode == "auth/weak-password") {
         message = '6+ characters required'
         error = errorTypes[1]
-        this.passFieldMessage("too short");
       } else {
         message = 'an error occurred'
         error = errorTypes[2]
