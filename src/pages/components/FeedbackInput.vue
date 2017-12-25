@@ -1,5 +1,5 @@
 <template>
-  <input :type="type" :class="classes" :value="value" @keyup="reset()" @input="update($event.target.value)" :placeholder="placeholder">
+  <input :type="type" :class="classes" :value="value" @keyup="change($event.target.value)" @input="update($event.target.value)" :placeholder="placeholder">
 </template>
 
 <script>
@@ -20,8 +20,8 @@ export default {
     update(value) {
       this.$emit('input', value)
     },
-    reset() {
-      this.$emit('reset')
+    change(value) {
+      if(value.length > 0) this.$emit('change')
     }
   },
   computed: {

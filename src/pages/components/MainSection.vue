@@ -24,8 +24,10 @@ export default {
 }
 
 .page_header {
+  box-sizing: border-box;
   background: rgba(11,11,15);
   margin: 0 auto 25px auto;
+  padding: 5px 10px;
   width: 100%;
 }
 </style>

@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../pages/Home'
-import Profile from '../pages/Profile'
-import About from '../pages/About'
-import SharedProfile from '../pages/SharedProfile'
+import Home from '@/pages/Home'
+import Profile from '@/pages/Profile'
+import About from '@/pages/About'
+import SignIn from '@/pages/SignIn'
+import SignUp from '@/pages/SignUp'
+import SharedProfile from '@/pages/SharedProfile'
+import NotFound from '@/pages/NotFound'
 
 Vue.use(VueRouter)
 
@@ -25,6 +28,16 @@ export const router = new VueRouter({
             component: About
         },
         {
+            path: '/signin',
+            name: 'signin',
+            component: SignIn
+        },
+        {
+            path: '/signup',
+            name: 'signup',
+            component: SignUp
+        },
+        {
             path: '/shared/:uid',
             name: 'sharedprofile',
             component: SharedProfile
@@ -32,7 +45,7 @@ export const router = new VueRouter({
         {
             path: '*',
             name: '404',
-            component: {template: '<h1 style="text-align: center">404</h1>'}
+            component: NotFound
         }
     ],
     mode: 'history'

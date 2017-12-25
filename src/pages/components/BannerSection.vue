@@ -9,10 +9,10 @@
           <table>
             <tr>
               <td>
-                <feedback-input v-model="email" @reset="placeholderReset('email')" :error="isEmailError" :placeholder="emailPlaceholder" />
+                <feedback-input v-model="email" @change="placeholderReset('email')" :error="isEmailError" :placeholder="emailPlaceholder" />
               </td>
               <td>
-                <feedback-input type="password" v-model="password" @reset="placeholderReset('password')" :error="isPasswordError" :placeholder="passwordPlaceholder"/>
+                <feedback-input type="password" v-model="password" @change="placeholderReset('password')" :error="isPasswordError" :placeholder="passwordPlaceholder"/>
               </td>
               <td>
                 <button class="blue_button" type="submit">sign in</button>
@@ -58,10 +58,10 @@ export default {
       this.$store.dispatch('signOut')
     },
     placeholderReset(type) {
-      if (type === 'email' && this.emailPlaceholder !== EMAIL_PLACEHOLDER && this.email.length > 0) {
+      if (type === 'email' && this.emailPlaceholder !== EMAIL_PLACEHOLDER) {
         this.$store.dispatch('clearError')
       }
-      if (type === 'password' && this.passwordPlaceholder !== PASSWORD_PLACEHOLDER && this.password.length > 0) {
+      if (type === 'password' && this.passwordPlaceholder !== PASSWORD_PLACEHOLDER) {
         this.$store.dispatch('clearError')
       }
     }
@@ -147,15 +147,5 @@ export default {
 .loginMessage {
   font-weight: 580;
   color: white;
-}
-
-.loginTextInput {
-  border: 1px solid black;
-  padding: 2px;
-}
-
-.loginTextError::placeholder {
-  color: red;
-  opacity: 1;
 }
 </style>
