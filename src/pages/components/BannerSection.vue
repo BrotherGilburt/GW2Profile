@@ -1,6 +1,6 @@
 <template>
   <div class="banner">
-    <div class="center-section banner-flex">
+    <div class="center_section banner-flex">
       <div class="bannerLeft">
         <router-link to="/"><span class="bannerTitle">GW2 Profile</span></router-link>
       </div>

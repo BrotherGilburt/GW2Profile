@@ -127,4 +127,9 @@ export default {
   position: relative;
   text-align: left;
 }
+
+.component_buttons {
+  display: block;
+  float: right;
+}
 </style>

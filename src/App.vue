@@ -125,7 +125,7 @@ b {
   border: 1px solid white;
 }
 
-.center-section {
+.center_section {
   width: 900px;
   margin: auto;
 }

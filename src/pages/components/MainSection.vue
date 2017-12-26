@@ -1,5 +1,5 @@
 <template>
-    <div class="main-section center-section">
+    <div class="main_section center_section">
         <h1 class="page_header">{{headline}}</h1>
         <slot></slot>
   </div>
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style scoped>
-.main-section {
+.main_section {
   color: white;
   background: rgba(28,28,38,0.9);
   margin: auto;
