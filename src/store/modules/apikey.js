@@ -1,3 +1,6 @@
+import * as firebase from 'firebase'
+import * as axios from 'axios'
+
 const state = {
   apikey: {
     value: null,  
@@ -53,7 +56,7 @@ const actions = {
     let userid = firebase.auth().currentUser.uid
     let path = '/users/' + userid + '/apikey'
     firebase.database().ref(path).remove()
-      commit('setApikey', { value: null, error: false, edit: false })
+    commit('setApikey', { value: null, error: false, edit: false })
   },
   editApikey({ commit }, { edit }) {
     commit('setApikey', { edit })

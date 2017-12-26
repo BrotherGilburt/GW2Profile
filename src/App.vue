@@ -105,6 +105,8 @@ b {
 }
 
 .blue_button {
+  box-sizing: border-box;
+  height: 30px;
   border: none;
   font-size: 16px;
   color: inherit;

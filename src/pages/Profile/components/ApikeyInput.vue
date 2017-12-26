@@ -1,72 +1,63 @@
 <template>
   <profile-section headline="API Key:">
-    <div class="api-key-content">
-        <form class="api-key-form" v-on:submit.prevent="submitAPIKey">
-            <table>
-                <tr v-if="valid == false && edit == false">
-                    <td><span>You must enter a Guild Wars 2 API Key to create your profile</span></td>
-                    <td><button class="blue_button" type="button" v-on:click="editStart">add a key</button></td>
-                </tr>
-                <tr v-if="valid == false && edit == true">
-                    <td>
-                        <input v-bind:class="apiInputClass"
-                            v-model="apikeyInput" type="text" max="72"
-                            v-on:keyup="placeholderReset"
-                            v-bind:placeholder="apiInputHolder"/>
-                    </td>
-                    <td>
-                        <button class="blue_button" type="submit">submit</button>
-                    </td>
-                    <td><button class="blue_button" type="button" v-on:click="editFinish">cancel</button></td>
-                </tr>
-                <tr v-if="valid == true && edit == false">
-                    <td>{{apiKeyPreview}}</td>
-                    <td><button class="blue_button" type="button" v-on:click="editStart">edit</button></td>
-                </tr>
-                <tr v-if="valid == true && edit == true">
-                    <td>{{apiKeyPreview}}</td>
-                    <td>
-                        <button class="blue_button" v-on:click="deleteAPIKey" type="button">delete</button>
-                    </td>
-                    <td><button class="blue_button" type="button" v-on:click="editFinish">cancel</button></td>
-                </tr>
-            </table>
-        </form>
+    <div class="api_key_content">
+      <form class="api_key_form" @submit.prevent="submitAPIKey">
+        <div v-if="valid == false && edit == false">
+          <span>You must enter a Guild Wars 2 API Key to create your profile</span>
+          <div class="interface_group">
+            <button class="blue_button" type="button" @click="editStart()">add a key</button>
+          </div>
+        </div>
+        <div v-if="valid == false && edit == true">
+          <feedback-input class="input_width" type="text" v-model="apikeyInput" @change="placeholderReset()" :error="error" :placeholder="placeholder" />
+          <div class="interface_group">
+            <button class="blue_button" type="submit">submit</button>
+            <button class="blue_button" type="button" @click="editFinish()">cancel</button>
+          </div>
+        </div>
+        <div v-if="valid == true && edit == false">
+          <span>{{apiKeyPreview}}</span>
+          <div class="interface_group">
+            <button class="blue_button" type="button" @click="editStart()">edit</button>
+          </div>
+        </div>
+        <div v-if="valid == true && edit == true">
+          <span>{{apiKeyPreview}}</span>
+          <div class="interface_group">
+            <button class="blue_button" type="button" @click="deleteAPIkey()">delete</button>
+            <button class="blue_button" type="button" @click="editFinish()">cancel</button>
+          </div>
+        </div>
+      </form>
     </div>
   </profile-section>
 </template>
 
 <script>
 import ProfileSection from '@/pages/components/ProfileSection.vue'
-import * as firebase from "firebase";
+import FeedbackInput from '@/pages/components/FeedbackInput.vue'
 
 export default {
   data() {
     return {
-      apikeyInput: '',
-      apiInputHolder: "Enter a valid Guild Wars 2 API Key"
-    };
+      apikeyInput: ''
+    }
   },
   components: {
-    ProfileSection
+    ProfileSection,
+    FeedbackInput
   },
   methods: {
-    deleteAPIKey() {
+    deleteAPIkey() {
       this.$store.dispatch('deleteApikey')
       this.$store.dispatch('deleteUserInfo')
     },
     submitAPIKey() {
-      this.$store.dispatch("submitApikey", {
-        value: this.apikeyInput
-      })
+      this.$store.dispatch("submitApikey", { value: this.apikeyInput })
       this.apikeyInput = ''
     },
     placeholderReset() {
-      if (this.apikeyInput.length <= 0) return
-
       this.error = false
-
-      this.apiInputHolder = 'Enter a valid Guild Wars 2 API Key';
     },
     editStart() {
       this.edit = true
@@ -80,6 +71,10 @@ export default {
   computed: {
     apikey() {
       return this.$store.getters.apikeyValue
+    },
+    placeholder() {
+      if (this.error === true) return 'invalid api key'
+      return 'Enter a valid Guild Wars 2 API Key'
     },
     valid() {
       return this.apikey != null && this.apikey != undefined;
@@ -102,34 +97,26 @@ export default {
     },
     apiKeyPreview() {
       return this.apikey.substring(0, 45) + "...";
-    },
-    apiInputClass() {
-      return {
-        "input-api": true,
-        "input-api-error": this.error
-      };
     }
   }
 };
 </script>
 
 <style scoped>
-.input-api {
-  width: 505px;
+.input_width {
+  width: 75% !important;
 }
 
-.input-api-error::placeholder {
-  color: red;
-  opacity: 1;
-}
-
-.api-key-content {
+.api_key_content {
   position: relative;
   text-align: left;
 }
 
-.component_buttons {
-  display: block;
-  float: right;
+.interface_group {
+  height: 32px;
+  margin-top: -16px;
+  position: absolute;
+  right: 0;
+  top: 50%;
 }
 </style>

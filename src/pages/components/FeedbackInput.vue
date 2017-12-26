@@ -21,7 +21,7 @@ export default {
       this.$emit('input', value)
     },
     change(value) {
-      if(value.length > 0) this.$emit('change')
+      if (value.length > 0) this.$emit('change')
     }
   },
   computed: {

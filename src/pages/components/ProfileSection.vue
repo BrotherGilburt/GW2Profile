@@ -22,6 +22,8 @@ export default {
 }
 
 .profile_section_body {
+  box-sizing: border-box;
+  position: relative;
   padding: 10px;
   background: rgba(11, 11, 15, 1);
 }
