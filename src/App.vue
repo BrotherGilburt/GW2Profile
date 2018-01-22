@@ -104,6 +104,26 @@ b {
   border: 1px solid black;
 }
 
+.right_section, .left_section, .full_section {
+  box-sizing: border-box;
+}
+
+.right_section, .left_section {
+  width: 50%;
+}
+
+.full_section {
+  width: 100%;
+}
+
+.right_section {
+  padding-left: 10px;
+}
+
+.left_section {
+  padding-right: 10px;
+}
+
 .blue_button {
   box-sizing: border-box;
   height: 30px;
@@ -128,11 +148,20 @@ b {
 }
 
 .center_section {
-  width: 900px;
+  max-width: 900px;
+  min-width: 320px;
   margin: auto;
 }
 
 table {
   white-space: nowrap;
+}
+
+@media all and (max-width: 750px) {
+  .left_section, .right_section {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    width: 100%;
+  }
 }
 </style>

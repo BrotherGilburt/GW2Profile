@@ -3,7 +3,7 @@
     <div>
       <table>
         <tr>
-          <td class="label">Name:</td>
+          <td class="label">Account:</td>
           <td>{{name}}</td>
         </tr>
         <tr>

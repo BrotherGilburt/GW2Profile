@@ -1,6 +1,6 @@
 <template>
   <main-section headline="Shared Profile">
-    <shared-account-info v-if="valid"></shared-account-info>
+    <shared-account-info class="left_section" v-if="valid"></shared-account-info>
     <div v-if="!valid">
       <h1>:(</h1>
       <h2>Profile Not Found</h2>

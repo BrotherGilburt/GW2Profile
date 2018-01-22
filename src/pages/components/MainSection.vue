@@ -15,6 +15,11 @@ export default {
 
 <style scoped>
 .main_section {
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+  align-items: flex-start;
   color: white;
   background: rgba(28,28,38,0.9);
   margin: auto;

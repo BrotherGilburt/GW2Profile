@@ -17,6 +17,7 @@ export default {
 
 <style scoped>
 .profile_section {
+  box-sizing: border-box;
   margin: 10px 0 0 0;
   text-align: left;
 }
