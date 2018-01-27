@@ -2,6 +2,10 @@
   <div class="profile_section">
     <h1 class="profile_section_header">{{headline}}</h1>
     <div class="profile_section_body">
+      <template v-if="enableEdit===true">
+        <button v-if="editMode===false" class="section_button" @click="edit()">edit</button>
+         <button v-if="editMode===true" class="section_button" @click="done()">done</button>
+      </template>
       <slot></slot>
     </div>
   </div>
@@ -10,7 +14,26 @@
 <script>
 export default {
   props: {
-    headline: String
+    headline: String,
+    enableEdit: {
+      type: Boolean,
+      default: false,
+    }
+  },
+  data() {
+    return {
+      editMode: false
+    }
+  },
+  methods: {
+    edit() {
+      this.editMode = true
+      this.$emit('edit', true)
+    },
+    done() {
+      this.editMode = false
+      this.$emit('edit', false)
+    }
   }
 }
 </script>

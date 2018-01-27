@@ -1,23 +1,15 @@
 <template>
   <div class="banner">
-    <div class="center_section banner-flex">
-      <div class="bannerLeft">
-        <router-link to="/"><span class="bannerTitle">GW2 Profile</span></router-link>
+    <div class="page_width banner_flex">
+      <div class="banner_left">
+        <router-link to="/"><span class="banner_title">GW2 Profile</span></router-link>
       </div>
-      <div class="bannerRight" v-if="!status">
-        <table>
-          <tr>
-            <td>
-              <button class="blue_button" type="button" @click="goToSignIn()">sign in</button>
-            </td>
-            <td>
-              <button class="blue_button" type="button" @click="goToSignUp()">sign up</button>
-            </td>
-          </tr>
-        </table>
+      <div class="banner_right" v-if="!status">
+        <button class="blue_button" type="button" @click="goToSignIn()">sign in</button>
+        <button class="blue_button" type="button" @click="goToSignUp()">sign up</button>
       </div>
-      <div class="bannerRight" v-if="status">
-        <span class="loginMessage">{{displayEmail}} </span>
+      <div class="banner_right" v-if="status">
+        <span class="login_message">{{displayEmail}} </span>
         <button class="blue_button" type="button" @click="signOut()">sign out</button>
       </div>
     </div>
@@ -54,36 +46,58 @@ export default {
   color: white;
   background: rgba(28,28,38,0.75);
   height: 150px;
-  min-width: 600px;
+  width: 100%;
 }
 
-.banner-flex {
+.banner_flex {
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
   height: 100%;
 }
 
-.bannerLeft {
-  padding: 5px 15px 0 15px;
+.banner_left, .banner_right {
   background: #0b0b0f;
-  align-self: flex-end;
-  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner_left {
+  padding: 5px 15px 0 15px;
   white-space: nowrap;
 }
 
-.bannerRight {
-  padding: 10px;
-  background: #0b0b0f;
-  align-self: flex-end;
-  float: right !important;
+.banner_right * {
+  margin: 0 5px;
 }
 
-.bannerTitle {
-  font-size: 36px;
+.banner_right {
+  padding: 10px;
+}
+
+@media all and (max-width: 750px) {
+  .banner_flex {
+    flex-wrap: wrap;
+  }
+
+  .banner_left {
+    align-self: flex-start;
+    width: 100%;
+  }
+
+  .banner_right {
+    align-self: flex-end;
+    width: 100%;
+  }
+}
+
+.banner_title {
+  font-size: 50px;
   font-weight: bold;
 }
 
-.loginMessage {
+.login_message {
   font-weight: 580;
   color: white;
 }

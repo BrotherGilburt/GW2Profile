@@ -7,10 +7,10 @@
       <navigation-section></navigation-section>
     </nav>
     <main>
-      <router-view></router-view>
+      <router-view class="page_width"></router-view>
     </main>
-    <footer>
-      
+    <footer class="page_width">
+      Site by Perry, 2017-2018
     </footer>
   </div>
 </template>
@@ -34,6 +34,7 @@ export default {
 <style>
 html,
 body {
+
   padding: 0;
   margin: 0;
 }
@@ -44,18 +45,26 @@ body {
   background-position: 50%;
   background-size: auto 150%;
   background-color: #29293a;
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   font-size: 20px;
+  color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+footer {
+  background-color: #0b0b0f;
+  padding: 5px 0;
+  color: inherit;
+  text-align: center;
+}
 
 a, a:visited {
-  color: white;
+  color: inherit;
 }
 
 a {
+  word-wrap: break-word;
   text-decoration: none;
 }
 
@@ -69,6 +78,10 @@ b {
 
 .section_content_link {
   text-decoration: underline !important;
+}
+
+.section_content_link:hover {
+  color: lightgray;
 }
 
 .section_content {
@@ -124,37 +137,52 @@ b {
   padding-right: 10px;
 }
 
-.blue_button {
+.action_link {
+  display: block;
+  float: right;
+  margin-right: 2px;
+  color: rgb(182, 194, 214);
+  cursor: pointer;
+}
+
+.blue_button, .section_button {
   box-sizing: border-box;
+  cursor: pointer;
+  color: white;
+  border: 1px solid rgb(53, 86, 137);
+  background: rgb(53, 86, 137);
+}
+
+.blue_button {
   height: 30px;
-  border: none;
   font-size: 16px;
-  color: inherit;
   padding: 3px 8px 3px 8px;
   font-weight: 600;
   font-size: 20px;
-  background: rgb(53, 86, 137);
-  margin: 1px;
 }
 
-.blue_button:hover {
-  margin: 0;
+.section_button {
+  height: 25px;
+  font-size: 18px;
+  padding: 0 3px;
+  float: right;
+}
+
+.blue_button:hover, .section_button:hover {
   border: 1px solid white;
 }
 
-.section_button:hover {
-  margin: 0;
-  border: 1px solid white;
-}
-
-.center_section {
+.page_width {
   max-width: 900px;
   min-width: 320px;
   margin: auto;
 }
 
-table {
-  white-space: nowrap;
+.table_label {
+  vertical-align: top;
+  padding-right: 5px;
+  text-align: right;
+  font-weight: bold;
 }
 
 @media all and (max-width: 750px) {

@@ -4,9 +4,7 @@
     <account-info-input class="left_section" v-if="status && isKey"></account-info-input>
     <personal-info-input class="right_section"  v-if="status && isKey"></personal-info-input>
     <shareable-link class="full_section" v-if="status && isKey"></shareable-link>
-    <div v-if="!status">
-      <h2>Login to view your profile</h2>
-    </div>
+    <h2 v-if="!status">Login to view your profile</h2>
   </main-section>
 </template>
 

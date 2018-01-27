@@ -3,23 +3,23 @@
     <div>
       <table>
         <tr>
-          <td class="label">Account:</td>
+          <td class="table_label">Account:</td>
           <td>{{name}}</td>
         </tr>
         <tr>
-          <td class="label">Age:</td>
+          <td class="table_label">Age:</td>
           <td>{{age}}</td>
         </tr>
         <tr>
-          <td class="label">Achievement Points:</td>
+          <td class="table_label">Achievement Points:</td>
           <td>{{ap}}</td>
         </tr>
         <tr>
-          <td class="label">Fractal Level:</td>
+          <td class="table_label">Fractal Level:</td>
           <td>{{fractal}}</td>
         </tr>
         <tr>
-          <td class="label">WvW Rank:</td>
+          <td class="table_label">WvW Rank:</td>
           <td>{{wvw}}</td>
         </tr>
       </table>
@@ -45,9 +45,5 @@ export default {
 </script>
 
 <style scoped>
-.label {
-  padding-right: 5px;
-  text-align: right;
-  font-weight: bold;
-}
+
 </style>

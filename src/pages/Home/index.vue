@@ -10,7 +10,7 @@
       <p class="section_content_text">
         To create a profile please sign up for an account.
         Then go to the profile page and add a valid Guild 
-        Wars 2 AP key.</p>
+        Wars 2 API key.</p>
         <p class="section_content_text">You can generate an AP key for your
         Guild Wars 2 account via the official
         <a class="section_content_link" href="https://www.guildwars2.com/en/">Guild Wars 2</a>

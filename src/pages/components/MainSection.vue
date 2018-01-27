@@ -1,5 +1,5 @@
 <template>
-    <div class="main_section center_section">
+    <div class="main_section">
         <h1 class="page_header">{{headline}}</h1>
         <slot></slot>
   </div>
@@ -20,6 +20,7 @@ export default {
   flex-flow: row wrap;
   align-content: flex-start;
   align-items: flex-start;
+  justify-content: center;
   color: white;
   background: rgba(28,28,38,0.9);
   margin: auto;
