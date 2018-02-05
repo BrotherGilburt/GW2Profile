@@ -33,35 +33,35 @@ export default {
           return apikey != null && apikey != undefined
       },
       name() {
-          let name = this.$store.getters.account.name
+          let name = this.$store.getters.accountName
           if (name == null)
             return 'N/A'
           else
             return name
       },
       age() {
-          let age = this.$store.getters.account.age
+          let age = this.$store.getters.accountAge
           if (age != null && age != undefined)
             return Math.floor(age/60/60) + ' hours'
           else
             return null
       },
       ap() {
-          let ap = this.$store.getters.account.ap
+          let ap = this.$store.getters.accountAp
           if (ap == null)
             return 'N/A'
           else
             return ap.toString()
       },
       fractal() {
-          let fractal = this.$store.getters.account.fractal
+          let fractal = this.$store.getters.accountFractal
           if (fractal == null)
             return 'N/A'
           else
             return fractal.toString()
       },
       wvw() {
-          let wvw = this.$store.getters.account.wvw
+          let wvw = this.$store.getters.accountWvw
           if (wvw == null)
             return 'N/A'
           else

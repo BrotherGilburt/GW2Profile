@@ -9,6 +9,12 @@ const state = {
         ap: null,
         fractal: null,
         wvw: null
+    },
+    personal: {
+        name: null,
+        age: null,
+        location: null,
+        bio: null
     }
 }
 
@@ -20,12 +26,23 @@ const mutations = {
         state.account.fractal = fractal
         state.account.wvw = wvw
     },
+    setPersonal(state, {name, age, location, bio}) {
+        state.personal.name = name
+        state.personal.age = age
+        state.personal.location = location
+        state.personal.bio = bio
+    },
     reset(state) {
         state.account.name = null
         state.account.age = null
         state.account.ap = null
         state.account.fractal = null
         state.account.wvw = null
+
+        state.personal.name = null
+        state.personal.age = null
+        state.personal.location = null
+        state.personal.bio = null
     }
 }
 
@@ -58,12 +75,42 @@ const actions = {
         let path = '/users/' + userid + '/account'
         firebase.database().ref(path).remove()
         commit('setAccount', {name: null, age: null, ap: null, fractal: null, wvw: null})
+    },
+    loadPersonalInfo({ commit, getters}) {
+        //TODO: Get data from firebase.
+    },
+    updatePersonalInfo() {
+        //TODO: Set data in firebase.
     }
 }
 
 const getters = {
-    account(state) {
-        return state.account
+    accountName(state) {
+        return state.account.name
+    },
+    accountAge(state) {
+        return state.account.age
+    },
+    accountAp(state) {
+        return state.account.ap
+    },
+    accountFractal(state) {
+        return state.account.fractal
+    },
+    accountWvw(state) {
+        return state.account.wvw
+    },
+    personalName(state) {
+        return state.personal.name
+    },
+    personalAge(state) {
+        return state.personal.age
+    },
+    personalLocation(state) {
+        return state.personal.location
+    },
+    personalBio(state) {
+        return state.personal.bio
     },
     shareableLink(state, getters, rootState) {
         if (rootState.status === false) return null

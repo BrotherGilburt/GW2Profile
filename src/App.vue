@@ -154,7 +154,6 @@ b {
 }
 
 .blue_button {
-  height: 30px;
   font-size: 16px;
   padding: 3px 8px 3px 8px;
   font-weight: 600;
