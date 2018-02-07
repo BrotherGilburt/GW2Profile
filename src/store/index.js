@@ -4,7 +4,7 @@ import * as firebase from 'firebase'
 import axios from 'axios'
 import login from './modules/login.js'
 import apikey from './modules/apikey.js'
-import userProfile from './modules/userProfile.js'
+import userProfile from './modules/userProfile'
 import sharedProfile from './modules/sharedProfile.js'
 
 Vue.use(Vuex)

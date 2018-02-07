@@ -52,7 +52,7 @@ const actions = {
       commit('setApikey', { error: true, edit: true })
     })
   },
-  deleteApikey({ commit }) {
+  deleteProfile({ commit }) {
     let userid = firebase.auth().currentUser.uid
     let path = '/users/' + userid + '/apikey'
     firebase.database().ref(path).remove()

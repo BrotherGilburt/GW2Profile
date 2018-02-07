@@ -30,30 +30,32 @@ export default {
       this.edit = true
     },
     editDone() {
-      //TODO: Update values in the store.
+      this.$store.dispatch('updatePersonalInfo', {name: this.name, age: this.age, location: this.location, bio: this.bio})
       this.edit = false
     },
     editCancel() {
-      //TODO: Reset values to those in the store.
+      
       this.edit = false
+    },
+    setToStore() {
+      this.name = this.storedName
+      this.age = this.storedAge
+      this.location = this.storedLocation
+      this.bio = this.storedBio
     }
   },
   computed: {
     storedName() {
-      //Get name from store.
-      return 'Perry' //TODO
+      return this.$store.getters.personalName
     },
     storedAge() {
-      //Get from, store.
-      return '26' //TODO
+      return this.$store.getters.personalAge
     },
     storedLocation() {
-      //Get from store.
-      return 'Illinois' //TODO
+      return this.$store.getters.personalLocation
     },
     storedBio() {
-      //Get from store.
-      return 'I am a banana.' //TODO
+      return this.$store.getters.personalBio
     }
   },
   watch: {
@@ -71,11 +73,7 @@ export default {
     }
   },
   mounted() {
-    //Set display values from store
-    this.name = this.storedName
-    this.age = this.storedAge
-    this.location = this.storedLocation
-    this.bio = this.storedBio
+    this.$store.dispatch('loadPersonalInfo')
   }
 }
 </script>

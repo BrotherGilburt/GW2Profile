@@ -49,8 +49,8 @@ export default {
   },
   methods: {
     deleteAPIkey() {
-      this.$store.dispatch('deleteApikey')
-      this.$store.dispatch('deleteUserInfo')
+      /*Deleting the Apikey deletes the entire profile*/
+      this.$store.dispatch('deleteProfile')
     },
     submitAPIKey() {
       this.$store.dispatch("submitApikey", { value: this.apikeyInput })

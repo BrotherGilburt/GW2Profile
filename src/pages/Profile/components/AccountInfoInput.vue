@@ -12,20 +12,8 @@ export default {
   components: {
       AccountInfoSection
   },
-  methods: {
-      loadContent() {
-        if (this.isKey == true) {
-            this.$store.dispatch('loadAccountInfo')
-        }
-      }
-  },
   mounted() {
-      this.loadContent()
-  },
-  watch: {
-      isKey: function() {
-          this.loadContent()
-      }
+      this.$store.dispatch('loadAccountInfo')
   },
   computed: {
       isKey() {

@@ -19,6 +19,14 @@
 						"ap": {},
 						"fractal": {},
 						"wvw": {}
+					},
+					"personal": {
+						".read": true,
+						".write": "$uid === auth.uid",
+						"name": {},
+						"age": {},
+						"location": {},
+						"bio": {}
 					}
 				}
 			}

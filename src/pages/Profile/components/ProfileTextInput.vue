@@ -1,7 +1,7 @@
 <template>
   <div class="profile_section_item">
-    <label>{{label}}:</label>
-    <span v-if="!edit">{{value}}</span>
+    <label v-if="label != null">{{label}}:</label>
+    <span v-if="!edit">{{displayValue}}</span>
     <input v-if="edit" class="profile_section_input" type="text" :value="value" @input="update($event.target.value)" :maxLength="max"/>
   </div>
 </template>
@@ -9,7 +9,10 @@
 <script>
 export default {
   props: {
-    label: String,
+    label: {
+      type: String,
+      default: null
+    },
     display: String,
     value: String,
     edit: {
@@ -24,6 +27,11 @@ export default {
   methods: {
     update(value) {
       this.$emit('input', value)
+    }
+  },
+  computed: {
+    displayValue() {
+      return this.value || 'none'
     }
   }
 }
@@ -54,7 +62,5 @@ label {
   color: inherit;
   border: none;
   background-color:rgb(41, 41, 54);
-  /*margin-top: -2px;
-  border-bottom: 2px solid white;*/
 }
 </style>
