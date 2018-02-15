@@ -1,16 +1,25 @@
 <template>
-    <account-info-section :name="name" :age="age" :ap="ap" :fractal="fractal" :wvw="wvw"></account-info-section>
+  <profile-section headline="Account Info:">
+    <profile-text-display label="Account" :value="name" />
+    <profile-text-display label="Age" :value="age" />
+    <profile-text-display label="Achievement Points" :value="ap" />
+    <profile-text-display label="Fractal Level" :value="fractal" />
+    <profile-text-display label="WvW Rank" :value="wvw" />
+  </profile-section>
 </template>
 
 <script>
 import AccountInfoSection from '@/pages/components/AccountInfoSection.vue'
+import ProfileSection from '@/pages/components/ProfileSection.vue'
+import ProfileTextDisplay from './ProfileTextDisplay.vue'
 
 export default {
   data() {
       return {}
   },
   components: {
-      AccountInfoSection
+      ProfileSection,
+      ProfileTextDisplay
   },
   mounted() {
       this.$store.dispatch('loadAccountInfo')

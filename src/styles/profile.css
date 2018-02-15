@@ -1,0 +1,25 @@
+.profile_section_item_label {
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.profile_section_item {
+  display: flex;
+  align-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.profile_section_item_input {
+  box-sizing: content-box;
+  flex: 1;
+  padding: 0 10px;
+  border-radius: 5px;
+  font-size: inherit;
+  font-family: inherit;
+  background: inherit;
+  color: inherit;
+  border: none;
+  background-color:rgb(41, 41, 54);
+}

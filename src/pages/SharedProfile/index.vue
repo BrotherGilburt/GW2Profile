@@ -1,6 +1,7 @@
 <template>
   <main-section headline="Shared Profile">
     <shared-account-info class="left_section" v-if="valid"></shared-account-info>
+    <shared-personal-info class="right_section" v-if="valid"></shared-personal-info>
     <div v-if="!valid">
       <h1>:(</h1>
       <h2>Profile Not Found</h2>
@@ -12,11 +13,13 @@
 <script>
 import MainSection from '../components/MainSection.vue'
 import SharedAccountInfo from './components/SharedAccountInfo.vue'
+import SharedPersonalInfo from './components/SharedPersonalInfo.vue'
 
 export default {
   components: {
     MainSection,
-    SharedAccountInfo
+    SharedAccountInfo,
+    SharedPersonalInfo
   },
   mounted() {
     this.$store.dispatch('loadSharedProfile', {value: this.uid})
