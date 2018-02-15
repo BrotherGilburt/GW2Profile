@@ -14,7 +14,6 @@ export default {
       default: null
     },
     value: {
-      type: String,
       required: true
     },
     edit: {

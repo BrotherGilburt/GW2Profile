@@ -8,6 +8,7 @@
       <div class="profile_section_buttons" v-if="enableEdit===true">
         <button v-if="editMode===false" class="section_button" @click="edit()">edit</button>
         <button v-if="editMode===true" class="section_button" @click="done()">done</button>
+        <button v-if="editMode===true" class="section_button" @click="cancel()">cancel</button>
       </div>
     </div>
   </div>
@@ -16,7 +17,10 @@
 <script>
 export default {
   props: {
-    headline: String,
+    headline: {
+      type: String,
+      required: true
+    },
     enableEdit: {
       type: Boolean,
       default: false,
@@ -37,7 +41,8 @@ export default {
       this.$emit('done')
     },
     cancel() {
-      this.editMode = falsethis.$emit('cancel')
+      this.editMode = false
+      this.$emit('cancel')
     }
   }
 }
@@ -67,7 +72,13 @@ export default {
 }
 
 .profile_section_buttons {
-  margin-left: 10px
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile_section_buttons * {
+  margin-bottom: 5px;
 }
 
 .profile_section_content {

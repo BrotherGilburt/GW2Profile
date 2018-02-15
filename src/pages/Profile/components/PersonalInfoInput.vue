@@ -34,7 +34,7 @@ export default {
       this.edit = false
     },
     editCancel() {
-      setToStore()
+      this.setToStore()
       this.edit = false
     },
     setToStore() {
