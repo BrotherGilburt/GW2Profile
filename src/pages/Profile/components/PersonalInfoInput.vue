@@ -34,7 +34,7 @@ export default {
       this.edit = false
     },
     editCancel() {
-      
+      setToStore()
       this.edit = false
     },
     setToStore() {
@@ -58,22 +58,9 @@ export default {
       return this.$store.getters.personalBio
     }
   },
-  watch: {
-    storedName() {
-      this.name = this.storedName
-    },
-    storedAge() {
-      this.age = this.storedAge
-    },
-    storedLocation() {
-      this.location = this.storedLocation
-    },
-    storedBio() {
-      this.bio = this.storedBio
-    }
-  },
   mounted() {
     this.$store.dispatch('loadPersonalInfo')
+    this.setToStore()
   }
 }
 </script>
