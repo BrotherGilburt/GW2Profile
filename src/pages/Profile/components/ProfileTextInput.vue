@@ -14,6 +14,7 @@ export default {
       default: null
     },
     value: {
+      type: String,
       required: true
     },
     edit: {
@@ -32,7 +33,7 @@ export default {
   },
   computed: {
     displayValue() {
-      return this.value || 'none'
+      return this.value || 'N/A'
     }
   }
 }

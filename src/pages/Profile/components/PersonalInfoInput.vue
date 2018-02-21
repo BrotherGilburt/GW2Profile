@@ -19,10 +19,10 @@ export default {
   data() {
     return {
       edit: false,
-      name: null,
-      age: null,
-      location: null,
-      bio: null
+      name: '',
+      age: '',
+      location: '',
+      bio: ''
     }
   },
   methods: {
@@ -46,16 +46,32 @@ export default {
   },
   computed: {
     storedName() {
-      return this.$store.getters.personalName
+      let name = this.$store.getters.personalName
+      if (name == null) return ''
+      return name
     },
     storedAge() {
-      return this.$store.getters.personalAge
+      let age = this.$store.getters.personalAge
+      if (age == null) return ''
+      return age
     },
     storedLocation() {
-      return this.$store.getters.personalLocation
+      let location = this.$store.getters.personalLocation
+      if (location == null) return ''
+      return location
     },
     storedBio() {
-      return this.$store.getters.personalBio
+      let bio = this.$store.getters.personalBio
+      if (bio == null) return ''
+      return bio 
+    },
+    storeStatus() {
+      return this.$store.getters.personalStatus
+    }
+  },
+  watch: {
+    storeStatus() {
+      if (this.storeStatus == true) this.setToStore()
     }
   },
   mounted() {

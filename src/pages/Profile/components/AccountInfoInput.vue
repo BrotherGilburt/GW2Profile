@@ -41,7 +41,7 @@ export default {
           if (age != null && age != undefined)
             return Math.floor(age/60/60) + ' hours'
           else
-            return null
+            return 'N/A'
       },
       ap() {
           let ap = this.$store.getters.accountAp
