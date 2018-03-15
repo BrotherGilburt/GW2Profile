@@ -1,8 +1,8 @@
 <template>
   <div class="profile_section_item">
-    <label class="profile_section_item_label" v-if="label != null">{{label}}:</label>
-    <span v-if="!edit">{{displayValue}}</span>
-    <input v-if="edit" class="profile_section_item_input" type="text" :value="value" @input="update($event.target.value)" :maxLength="max"/>
+    <label class="profile_section_item_label" v-if="label != ''">{{label}}:</label>
+    <span v-if="!edit" :class="{truncate: truncated}">{{displayValue}}</span>
+    <input v-else :class="classes" type="text" :placeholder="errorMessage" :value="value" @input="update($event.target.value)" :maxLength="max"/>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   props: {
     label: {
       type: String,
-      default: null
+      default: ''
     },
     value: {
       type: String,
@@ -19,11 +19,19 @@ export default {
     },
     edit: {
       type: Boolean,
-      default: false
+      required: true
     },
     max: {
       type: Number,
       default: 524288
+    },
+    errorMessage: {
+      type: String,
+      default: ''
+    },
+    truncated: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -32,6 +40,12 @@ export default {
     }
   },
   computed: {
+    classes() {
+      return {
+        profile_section_item_input: true,
+        profile_section_item_input_error: this.errorMessage !== ''
+      }
+    },
     displayValue() {
       return this.value || 'N/A'
     }

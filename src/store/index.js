@@ -21,13 +21,23 @@ const config = {
 export const store = new Vuex.Store({
   state: {
     status: false,
+    apikeyListener: {
+      ref: null,
+      funct: null
+    }
   },
   mutations: {
     reset(state) {
       state.status = false
+      state.apikeyListener.ref = null
+      state.apikeyListener.funct = null
     },
     setStatus(state, status) {
       state.status = status
+    },
+    setApikeyListener(state, {ref, funct}) {
+      state.apikeyListener.ref = ref
+      state.apikeyListener.funct = funct
     }
   },
   actions: {
@@ -35,7 +45,7 @@ export const store = new Vuex.Store({
       //initalize app
       if (!firebase.apps.length) firebase.initializeApp(config)
 
-      //set listener for user status
+      //Set listener for user status
       firebase.auth().onAuthStateChanged( (user) => {
         if (user) {
           commit('setStatus', true)
@@ -43,12 +53,12 @@ export const store = new Vuex.Store({
           let path = "/users/" + userid + "/apikey"
           let ref = firebase.database().ref(path)
           let funct = ref.on('value', (snapshot) => {
-            commit('setApikey', { value: snapshot.val(), error: false, edit: false })
+            commit('setApikey', { value: snapshot.val()})
           })
-          commit('setApikey', {funct, ref})
+          commit('setApikeyListener', {funct, ref})
         } else {
-          if (state.apikey.ref != null && state.apikey.funct != null) {
-            state.apikey.ref.off('value', state.apikey.funct)
+          if (state.apikeyListener.ref != null && state.apikeyListener.funct != null) {
+            state.apikeyListener.ref.off('value', state.apikey.funct)
           }
           commit('reset')
         }
@@ -75,63 +85,3 @@ export const store = new Vuex.Store({
     sharedProfile
   }
 })
-
-/*
-  STATE
-    apikey: {
-      value: null,
-      error: false,
-      edit: false,
-      funct: null,
-      ref: null
-    }
-
-    MUTATIONS
-      state.apikey.value = null
-      state.apikey.error = false
-      state.apikey.edit = false
-      state.apikey.funct = null
-      state.apikey.ref = null
-
-    setApikey(state, { value, error, edit, funct, ref }) {
-      if (value !== undefined) state.apikey.value = value
-      if (error !== undefined) state.apikey.error = error
-      if (edit !== undefined) state.apikey.edit = edit
-      if (funct !== undefined) state.apikey.funct = funct
-      if (ref !== undefined) state.apikey.ref = ref
-    }
-
-    ACTIONS
-    submitApikey({ commit }, { value }) {
-      let path =
-      "https://api.guildwars2.com/v2/tokeninfo?access_token=" + value
-      
-      axios.get(path).then( (response) => {
-        let userid = firebase.auth().currentUser.uid
-        let path = '/users/' + userid + '/apikey'
-        firebase.database().ref(path).set(value)
-        commit('setApikey', { value, error: false, edit: false })
-      }).catch( (error) => {
-        commit('setApikey', { error: true, edit: true })
-      })
-    },
-    deleteApikey({ commit }) {
-      let userid = firebase.auth().currentUser.uid
-      let path = '/users/' + userid + '/apikey'
-      firebase.database().ref(path).remove()
-      commit('setApikey', { value: null, error: false, edit: false })
-    },
-    editApikey({ commit }, { edit }) {
-      commit('setApikey', { edit })
-    },
-    errorApikey({ commit }, { error }) {
-      commit('setApikey', { error })
-    }
-
-    apikey(state) {
-      return state.apikey
-    },
-
-
-
-*/

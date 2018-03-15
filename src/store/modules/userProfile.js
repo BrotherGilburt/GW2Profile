@@ -84,8 +84,6 @@ const actions = {
     commit('setPersonalStatus', false)
 
     firebase.database().ref(path).once('value').then(snapshot => {
-      console.log('personal read: ', snapshot.val())
-
       if (snapshot.val() == null) return
 
       commit('setPersonal', snapshot.val())

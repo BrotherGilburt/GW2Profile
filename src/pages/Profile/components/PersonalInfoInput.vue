@@ -1,5 +1,6 @@
 <template>
-  <profile-section headline="Personal Info:" :enableEdit="true" @edit="editStart" @done="editDone" @cancel="editCancel">
+  <profile-section headline="Personal Info:">
+    <edit-buttons class="profile_section_buttons" slot="profile_section_buttons" :editMode="edit" @edit="editStart" @done="editDone" @cancel="editCancel"></edit-buttons>
     <profile-text-input label="Name" v-model="name" :edit="edit" :max="19" />
     <profile-text-input label="Age" v-model="age" :edit="edit" :max="2" />
     <profile-text-input label="Location" v-model="location" :edit="edit" :max="19" />
@@ -10,11 +11,13 @@
 <script>
 import ProfileSection from '@/pages/components/ProfileSection.vue'
 import ProfileTextInput from './ProfileTextInput.vue'
+import EditButtons from '@/pages/components/Buttons/EditButttons.vue'
 
 export default {
   components: {
       ProfileSection,
-      ProfileTextInput
+      ProfileTextInput,
+      EditButtons
   },
   data() {
     return {
@@ -80,7 +83,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
