@@ -2,7 +2,7 @@
   <div class="banner">
     <div class="page_width banner_flex">
       <div class="banner_left">
-        <router-link to="/"><span class="banner_title">GW2 Profile</span></router-link>
+        <router-link to="/" class="nav-link banner_title">GW2 Profile</router-link>
       </div>
       <div class="banner_right" v-if="!status">
         <button class="blue_button" type="button" @click="goToSignIn()">sign in</button>

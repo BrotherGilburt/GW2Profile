@@ -41,8 +41,8 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    init({ commit , state }) {
-      //initalize app
+    init({ commit , state, dispatch}) {
+      //Initalize app
       if (!firebase.apps.length) firebase.initializeApp(config)
 
       //Set listener for user status
@@ -53,7 +53,7 @@ export const store = new Vuex.Store({
           let path = "/users/" + userid + "/apikey"
           let ref = firebase.database().ref(path)
           let funct = ref.on('value', (snapshot) => {
-            commit('setApikey', { value: snapshot.val()})
+            dispatch('refreshApikey', {value: snapshot.val()})
           })
           commit('setApikeyListener', {funct, ref})
         } else {

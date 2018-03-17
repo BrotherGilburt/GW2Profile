@@ -42,6 +42,12 @@ const actions = {
     let path = '/users/' + userid + '/apikey'
     firebase.database().ref(path).remove()
     commit('setApikey', { value: null, status: 'success' })
+  },
+  refreshApikey({commit, getters, dispatch}, {value}) {
+    if (getters.apikeyValue != value) {
+      commit('setApikey', { value, status: 'refresh' })
+      dispatch('refreshProfile')
+    }
   }
 }
 

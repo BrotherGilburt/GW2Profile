@@ -29,7 +29,7 @@ export default {
       this.$store.dispatch('deleteProfile')
     },
     submitAPIKey() {
-      this.$store.dispatch("submitApikey", { value: this.apikey })
+      this.$store.dispatch('submitApikey', { value: this.apikey })
     },
     editStart() {
       this.apikey = ''
@@ -39,19 +39,19 @@ export default {
       this.editMode = false
     },
     setToStore() {
-      this.apikey = this.storedApikey
+      this.apikey = this.storedApikey || ''
     }
   },
   computed: {
-    storedApikey() {
-      return this.$store.getters.apikeyValue
-    },
     errorMessage() {
       if (this.storedApikeyStatus === 'error') {
         this.apikey = ''
         return 'invalid api key'
       }
       return ''
+    },
+    storedApikey() {
+      return this.$store.getters.apikeyValue
     },
     storedApikeyStatus() {
       return this.$store.getters.apikeyStatus
@@ -65,8 +65,10 @@ export default {
   },
   watch: {
     storedApikey() {
-      this.apikey = this.storedApikey || ''
-      this.editMode = false
+      if (this.apikey !== this.storedApikey) {
+        this.setToStore()
+        this.editMode = false
+      }
     },
     storedApikeyStatus() {
       if (this.storedApikeyStatus === 'success') {

@@ -1,12 +1,12 @@
 <template>
-  <div class="nav_panel">
-    <div class="center_section">
-      <router-link class="router_link" to="/">Home</router-link>
+  <div class="nav_section">
+    <nav class="center_section">
+      <router-link class="nav-link" to="/">Home</router-link>
       <span> | </span>
-      <router-link class="router_link" to="/profile">Profile</router-link>
+      <router-link class="nav-link" to="/profile">Profile</router-link>
       <span> | </span>
-      <router-link class="router_link" to="/about">About</router-link>
-    </div>
+      <router-link class="nav-link" to="/about">About</router-link>
+    </nav>
   </div>
 </template>
 
@@ -15,12 +15,5 @@ export default {};
 </script>
 
 <style scoped>
-.nav_panel {
-  border-bottom: 2px solid black;
-  background: #0b0b0f;
-  color: white;
-  font-size: 24px;
-  text-align: center;
-  padding: 5px;
-}
+
 </style>

@@ -27,6 +27,20 @@ const mutations = {
   setPersonalStatus(state, value) {
     state.personal.status = value
   },
+  resetProfile(state) {
+    /*Account Info*/
+    state.account.name = null
+    state.account.age = null
+    state.account.ap = null
+    state.account.fractal = null
+    state.account.wvw = null
+    
+    /*Personal Info*/
+    state.personal.name = null
+    state.personal.age = null
+    state.personal.location = null
+    state.personal.bio = null
+  },
   reset(state) {
     /*Account Info*/
     state.account.name = null
@@ -122,6 +136,14 @@ const actions = {
       fractal: null,
       wvw: null
     })
+  },
+  refreshProfile({dispatch, rootGetters}) {
+    if (rootGetters.apikeyValue == null) {
+      dispatch('resetProfile')
+    } else {
+      dispatch('loadPersonalInfo')
+      dispatch('loadAccountInfo')
+    }
   }
 }
 
