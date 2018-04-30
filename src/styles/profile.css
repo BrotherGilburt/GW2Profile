@@ -11,6 +11,10 @@
   margin-bottom: 5px;
 }
 
+.profile_section_item:last-of-type {
+  margin-bottom: 0;
+}
+
 .profile_section_item_text {
   flex: 1;
   min-width: 0;

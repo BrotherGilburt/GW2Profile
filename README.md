@@ -1,8 +1,12 @@
-# gw2profile
+## gw2profile
 
-> A Vue.js project
+A simple web app for sharing Guild Wars 2 account information. Users can create a profile using an Guild Wars 2 API key and can add personal informatio as well.
 
-## Build Setup
+You can test the app with the following GW2 API key: 5E1F4C16-8865-6E47-AB8E-F19F95FC0AFE10297559-F28D-4DD6-89A4-BFED9C64A95D
+
+Created using Vue.js and Firebase.
+
+### Build Setup
 
 ``` bash
 # install dependencies
@@ -14,5 +18,3 @@ npm run dev
 # build for production with minification
 npm run build
 ```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
