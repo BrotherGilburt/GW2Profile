@@ -206,6 +206,40 @@ b {
   margin-left: 0;
 }
 
+/* Text Input */
+
+.gw2-profile-input-container {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.gw2profile-input {
+  background-color:rgb(41, 41, 54);
+  border: none;
+  border-radius: 5px;
+  box-sizing: content-box;
+  color: white;
+  flex: 1;
+  font-size: inherit;
+  font-family: inherit;
+  min-width: 0;
+  padding: 0 10px;
+  width: 100%;
+}
+
+.gw2profile-input-message {
+  background-color:rgb(41, 41, 54);
+  border: 2px solid white;
+  border-radius: 5px;
+  color: white;
+  font-size: inherit;
+  font-family: inherit;
+  left: 100%;
+  position: absolute;
+  z-index: 10;
+}
+
 @media all and (max-width: 750px) {
   .left_section,
   .right_section {
