@@ -28,7 +28,7 @@ const actions = {
         message = 'user not found'
         error = errorTypes[2]
       } else if (errorCode == "auth/wrong-password") {
-        message = 'wrong password'
+        message = 'invalid password'
         error = errorTypes[1]
       } else {
         message = 'an error occurred'
@@ -69,6 +69,12 @@ const getters = {
   isLoginError(state) {
     if (state.login.error == null || errorTypes.indexOf(state.login.error) === -1) return false
     return true
+  },
+  loginError(state) {
+    return {
+      type: state.login.error,
+      message: state.login.message
+    }
   },
   loginEmailError(state) {
     if (state.login.error === 'email') return state.login.message

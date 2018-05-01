@@ -4,12 +4,12 @@
       <table class="section_content_table">
         <tr>
           <td>
-            <feedback-input v-model="email" @change="placeholderReset('email')" :error="isEmailError" :placeholder="emailPlaceholder" />
+            <text-input v-model="email"  :errorMessage="emailErrorMessage" :placeholder="'email'" />
           </td>
         </tr>
         <tr>
           <td>
-            <feedback-input type="password" v-model="password" @change="placeholderReset('password')" :error="isPasswordError" :placeholder="passwordPlaceholder" />
+            <text-input :type="'password'" v-model="password" :errorMessage="passwordErrorMessage" :placeholder="'password'" />
           </td>
         </tr>
         <tr>
@@ -24,15 +24,12 @@
 
 <script>
 import MainSection from '@/pages/components/MainSection.vue'
-import FeedbackInput from '@/pages/components/FeedbackInput.vue'
-
-const EMAIL_PLACEHOLDER = 'Email'
-const PASSWORD_PLACEHOLDER = 'Password'
+import TextInput from '@/pages/components/TextInput/TextInput.vue'
 
 export default {
   components: {
     MainSection,
-    FeedbackInput
+    TextInput
   },
   data() {
     return {
@@ -43,57 +40,42 @@ export default {
   methods: {
     signIn() {
       this.$store.dispatch('signIn', {email: this.email, password: this.password})
-    },
-    resetFields() {
-      this.email = ''
-      this.password = ''
-    },
-    placeholderReset(type) {
-      if (type === 'email' && this.emailPlaceholder !== EMAIL_PLACEHOLDER) {
-        this.$store.dispatch('clearError')
-      }
-      if (type === 'password' && this.passwordPlaceholder !== PASSWORD_PLACEHOLDER) {
-        this.$store.dispatch('clearError')
-      }
     }
   },
   watch: {
-    isError() {
-      if (this.isError === true) this.resetFields()
-    },
     status() {
       if (this.status === true) this.$router.push('/profile')
+    },
+    email() {
+      if (this.loginError.type == 'email' || this.loginError.type == 'both') {
+        this.$store.dispatch('clearError')
+      }
+    },
+    password() {
+      if (this.loginError.type == 'password' || this.loginError.type == 'both') {
+        this.$store.dispatch('clearError')
+      }
     }
   },
   computed: {
-    isError() {
-      return this.$store.getters.isLoginError
+    loginError() {
+      return this.$store.getters.loginError
     },
     status() {
       return this.$store.getters.status
     },
-    emailPlaceholder() {
-      let placeholder = this.$store.getters.loginEmailError
-      if (placeholder != null) return placeholder
-      placeholder = this.$store.getters.loginBothError
-      if (placeholder != null) return placeholder
-      return EMAIL_PLACEHOLDER
+    emailErrorMessage() {
+      if (this.loginError.type == 'email' || this.loginError.type == 'both') {
+        return this.loginError.message
+      }
+      return ''
     },
-    passwordPlaceholder() {
-      let placeholder = this.$store.getters.loginPasswordError
-      if (placeholder != null) return placeholder
-      return PASSWORD_PLACEHOLDER
-    },
-    isEmailError() {
-      return this.emailPlaceholder !== EMAIL_PLACEHOLDER
-    },
-    isPasswordError() {
-      return this.passwordPlaceholder !== PASSWORD_PLACEHOLDER
+    passwordErrorMessage() {
+      if (this.loginError.type == 'password') {
+        return this.loginError.message
+      }
+      return ''
     }
   }
 }
 </script>
-
-<style>
-
-</style>
